@@ -12,24 +12,21 @@
     </head>
     <body style="margin: 0px;" bgcolor="#678fc2" onload="start();">
     <label>Enter your indeces Name: <input class="stockName" type="text" value="indeks-mwig40"/></label>
-    <input type="button" id="getStockIndeces" value="ok" onclick="getIndecesValue()"/>
+    <input type="button" id="getStockIndeces" value="Get wig40 Index" onclick="getIndecesValue()"/>
     <input type="button" id="getAllStockIndeces" value="Get All indeces" onclick="getAllIndeces()"/>
     <div class="stockInformation">
         <label>Kurs akcji:</label><a id="stockIndex"></a>
     </div>
 <form>
 <div class="stockName">
-    <label for="select-choice-a">Lista spółek:</label>
-    <select name="select-choice-a" id="getStockIndeces" data-native-menu="false" > 
-        <option value="apt-apator-sa"  >APATOR (APT)</option>
+    <label>Lista spółek:</label>
+    <select name="select-choice-a" id="getStockIndecesForList" data-native-menu="false" >
+        <option value="apt-apator-sa">APATOR (APT)</option>
         <option value="2">The 2nd Option</option>
         <option value="3">The 3rd Option</option>
         <option value="4">The 4th Option</option>
-    </select
-     <label>Kurs akcji:</label><a id="stockIndex"></a>
+    </select>
 </div>
-</form
-
-
+</form>
     </body>
 </html>
