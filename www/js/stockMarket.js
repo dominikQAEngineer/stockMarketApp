@@ -25,28 +25,31 @@ var url = "http://mybank.pl/gielda/"+document.querySelector('.stockName').value+
 function getAllIndeces(){
 var url = "http://mybank.pl/gielda/indeks-mwig40.html";
 var company ={companyName: "", measureTime: "", curIndex: "", prevIndex: "", percentChange: "", pointChange: "", curAssets: ""};
+    var htmlOfPage =
     $.ajax({
-            type: "GET",
-            url: url,
-            dataType: "html",
-            success: function (data) {
-            $("#status").val(JSON.stringify(data));
-            data=$(data).find(".g_tab:nth-of-type(3)")
-            for(var i=3;i<=42;i++){
-            company.companyName=  $(data).find("tr:nth-of-type("+i+") td:nth-of-type(1) b").text()
-            company.measureTime=  $(data).find("tr:nth-of-type("+i+") td:nth-of-type(2)").text()
-            company.curIndex=     $(data).find("tr:nth-of-type("+i+") td:nth-of-type(3) b").text()
-            company.prevIndex=    $(data).find("tr:nth-of-type("+i+") td:nth-of-type(4)").text()
-            company.percentChange=$(data).find("tr:nth-of-type("+i+") td:nth-of-type(5)").text()
-            company.pointChange=  $(data).find("tr:nth-of-type("+i+") td:nth-of-type(6)").text()
-            company.curAssets=    $(data).find("tr:nth-of-type("+i+") td:nth-of-type(7)").text()
+                async:false,
+                type: "GET",
+                url: url,
+                dataType: "html",
+//                success: function (data) {
+//                $("#status").val(JSON.stringify(data));
+//                data=$(data).find(".g_tab:nth-of-type(3)")
+//                },
+//                error: function(xhr, textStatus, errorThrown) {
+//                        $("#status").val("Unavailable: " + textStatus);
+//                    }
+              }).responseText;
+              htmlOfPage=$(htmlOfPage).find(".g_tab:nth-of-type(3)")
+for(var i=3;i<=42;i++){
+            company.companyName=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(1) b").text()
+            company.measureTime=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(2)").text()
+            company.curIndex=     $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(3) b").text()
+            company.prevIndex=    $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(4)").text()
+            company.percentChange=$(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(5)").text()
+            company.pointChange=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(6)").text()
+            company.curAssets=    $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(7)").text()
 
              console.log("Nazwa spolki: %s, Czas pomiaru: %s, Aktualny Indeks %s, Poprzedni Indeks %s, Zmiana procentowa %s, Zmiana punktowa %s, Obrot %s",
              company.companyName, company.measureTime, company.curIndex, company.prevIndex, company.percentChange, company.pointChange, company.curAssets);
             }
-            },
-            error: function(xhr, textStatus, errorThrown) {
-                    $("#status").val("Unavailable: " + textStatus);
-                }
-          });
 }
