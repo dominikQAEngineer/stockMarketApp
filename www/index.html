@@ -10,7 +10,18 @@
         <script src="js/jquery.mobile-1.4.5.min.js"></script>
         <title>Blank App</title>
     </head>
-    <body style="margin: 0px;" bgcolor="#678fc2" onload="start();">
+
+<body style="margin: 0px;" bgcolor="#21272d" onload="start();">
+
+<!--otworzenie page -->>
+<div data-role="page" data-dialog="true" id="dialogWindow">
+
+<div data-role="header">
+<h1>Strona 1- Wyswietlanie strony</h1>
+</div>
+
+<div data-role="main" class="ui-content" >
+<div class="ui-grid-solo" >
     <label>Enter your indeces Name: <input class="stockName" type="text" value="indeks-mwig40"/></label>
     <input type="button" id="getStockIndeces" value="Get wig40 Index" onclick="getIndecesValue()"/>
     <input type="button" id="getAllStockIndeces" value="Get All indeces" onclick="getAllIndeces()"/>
@@ -28,5 +39,14 @@
     </select>
 </div>
 </form>
+
+</div>
+<div class="ui-grid-a">
+    <div class="ui-block-a"><a class="ui-shadow ui-btn ui-corner-all">Previous</a></div>
+    <div class="ui-block-b"><a class="ui-shadow ui-btn ui-corner-all">Next</a></div>
+</div>
+</div>
+</div> <!--zamkniecie page -->>
+
     </body>
 </html>
