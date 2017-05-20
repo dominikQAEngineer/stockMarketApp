@@ -1,25 +1,20 @@
-function onSuccess(acceleration) {
-//    alert('Acceleration X: ' + acceleration.x + '\n' +
-//          'Acceleration Y: ' + acceleration.y + '\n' +
-//          'Acceleration Z: ' + acceleration.z + '\n' +
-//          'Timestamp: '      + acceleration.timestamp + '\n');
-if(acceleration.z<0)
+var options = { frequency: 300 };  // Update every 0.3 seconds
+
+//Function responsible for refresh current stock index after movement of device (not working on browser
+function refreshMovement(acceleration) {
+var deviceManufacturer  = device.manufacturer;
+if(acceleration.z<0 && deviceManufacturer!="unknown")
 getIndecesValue()
 }
-
 function onError() {
     alert('onError!');
 }
-
-var options = { frequency: 300 };  // Update every 0.3 seconds
-
-
 function start(){
-document.addEventListener("deviceready",onSuccess, false);
-//var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options); //Wykomentowany poniewaz browser sobie z tym nie radzi
+document.addEventListener("deviceready",onDeviceReady, false);
 }
 function onDeviceReady() {
-	navigator.notification.beep(1);
+//	navigator.notification.beep(1);
+	var watchID = navigator.accelerometer.watchAcceleration(refreshMovement, onError, options);
 }
 function getIndecesValue(){
 var url = "http://mybank.pl/gielda/"+document.querySelector('.stockName').value+".html";//Ustawienie url strony glownej
