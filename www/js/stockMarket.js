@@ -71,7 +71,7 @@ for(var i=3;i<=42;i++){
             }
 }
 function getSelectedCompanyInformation(){
-//    if( $("#companyListSelect option:selected").value()!=-1)
-//    document.querySelector(".selectedCompanyIndexInfo a#currentIndexValue").innerHTML =
-//    $(htmlOfPage).find("tr:nth-of-type("+$("#companyListSelect option:selected").value()+") td:nth-of-type(3) b").text()
+    if( $("#companyListSelect option:selected").val()!=-1)
+    document.querySelector(".selectedCompanyIndexInfo a#currentIndexValue").innerHTML =
+    $(htmlOfPage).find("tr:nth-of-type("+$("#companyListSelect option:selected").val()+") td:nth-of-type(3) b").text()
 }
