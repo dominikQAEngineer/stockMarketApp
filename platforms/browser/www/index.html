@@ -8,28 +8,39 @@
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
         <script src="js/jquery-2.1.4.min.js"></script>
         <script src="js/jquery.mobile-1.4.5.min.js"></script>
-        <title>Blank App</title>
+        <title>stockMarketApp</title>
     </head>
-    <body style="margin: 0px;" bgcolor="#678fc2" onload="start();">
-    <label>Enter your indeces Name: <input class="stockName" type="text" value="indeks-mwig40"/></label>
-    <input type="button" id="getStockIndeces" value="ok" onclick="getIndecesValue()"/>
-    <input type="button" id="getAllStockIndeces" value="Get All indeces" onclick="getAllIndeces()"/>
-    <div class="stockInformation">
-        <label>Kurs akcji:</label><a id="stockIndex"></a>
-    </div>
-<form>
-<div class="stockName">
-    <label for="select-choice-a">Lista spółek:</label>
-    <select name="select-choice-a" id="getStockIndeces" data-native-menu="false" > 
-        <option value="apt-apator-sa"  >APATOR (APT)</option>
-        <option value="2">The 2nd Option</option>
-        <option value="3">The 3rd Option</option>
-        <option value="4">The 4th Option</option>
-    </select
-     <label>Kurs akcji:</label><a id="stockIndex"></a>
-</div>
-</form
 
+    <body style="margin: 0px;" bgcolor="#21272d" onload="start();">
+        <div data-role="page">
+        <div data-role="header">
+        <h1>Main Page</h1>
+        </div>
+        <div data-role="main" class="ui-content" >
+        <div class="ui-grid-solo" >
+            <input type="button" id="getAllStockIndeces" value="Get All indeces" onclick="getAllIndeces()"/>
+                <div class="stockInformation">
+                    <label>Indeks wig40:</label><a id="wig40StockIndex"></a>
+                </div>
+            <form>
+                <div class="wig40CompanyList">
+                    <label>Lista spółek:</label>
+                            <select name="select-choice-a" id="companyListSelect">
+                                <option value="-1">Wybierz spółkę</option>
+                            </select>
+                </div>
+            </form>
+            <div class="selectedCompanyIndexInfo">
+                <input type="button" id="getSelectedCompanyIndex" value="Get selected company index" onclick="getSelectedCompanyInformation()"/>
+                <label>Indeks wybranej spolki:</label><a id="currentIndexValue"></a>
+            </div>
+        </div>
+        <div class="ui-grid-a">
+            <div class="ui-block-a"><a class="ui-shadow ui-btn ui-corner-all">Previous</a></div>
+            <div class="ui-block-b"><a class="ui-shadow ui-btn ui-corner-all">Next</a></div>
+        </div>
+        </div>
+        </div>
 
     </body>
 </html>
