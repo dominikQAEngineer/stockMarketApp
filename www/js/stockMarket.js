@@ -50,11 +50,11 @@ function loadCompanyList(){
                 }
 
     window.localStorage.setItem("listOfCompanyStorage", JSON.stringify(listOfCompanyStorage));
-    var retrieveInfo = window.localStorage.getItem("listOfCompanyStorage");
-    var parsedInfo = JSON.parse(retrieveInfo);
-    for(var i=0;i<40;i++){
-            $companyList.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
-            }
+    // var retrieveInfo = window.localStorage.getItem("listOfCompanyStorage");
+    // var parsedInfo = JSON.parse(retrieveInfo);
+    // for(var i=0;i<40;i++){
+    //         $companyList.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
+    //         }
 //// Without localStorage:
 //    for(var i=3;i<=42;i++){
 //            $companyList.append('<option value="'+
