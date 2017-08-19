@@ -4,7 +4,7 @@ var htmlOfPage = "";
 function refreshMovement(acceleration) {
     var deviceManufacturer  = device.manufacturer;
     if(acceleration.z<0 && deviceManufacturer!="unknown")
-        getAllIndeces();
+        loadCompanyList();
     }
 function onError() {
     alert('There is some kind of problem with accelerator!');
