@@ -36,10 +36,12 @@ function loadCompanyList(){
 //                        document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =
                         wig40IndexLocal =
                         $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
+
+                        window.localStorage.setItem("wig40IndexLocal", wig40IndexLocal);
+                        document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
               }
               }).responseText;
-              window.localStorage.setItem("wig40IndexLocal", wig40IndexLocal);
-              document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
+
 
               $companyList.empty();
               $companyList.append('<option value="-1">Wybierz spolke</option>');
