@@ -24,7 +24,7 @@ function onDeviceReady() {
 }
 function loadCompanyList(){
     var url = "http://mybank.pl/gielda/indeks-mwig40.html";
-    var $companyList = $('#companyListSelect');
+    var $companyList = $('#companyListSelect2');
     var wig40IndexLocal;
     htmlOfPage =
     $.ajax({
@@ -100,8 +100,8 @@ function getAllIndeces(){
     window.localStorage.setItem("allCompanyInfoStorage", JSON.stringify(allCompanyInfoStorage));
 }
 function getSelectedCompanyInformation(){
-    if( $("#companyListSelect option:selected").val()!=-1){
-        document.querySelector(".selectedCompanyIndexInfo a#currentIndexValue").innerHTML =
-        $(htmlOfPage).find("tr:nth-of-type("+$("#companyListSelect option:selected").val()+") td:nth-of-type(3) b").text();
+    if( $("#companyListSelect2 option:selected").val()!=-1){
+        document.querySelector(".selectedCompanyIndexInfo2 a#currentIndexValue2").innerHTML =
+        $(htmlOfPage).find("tr:nth-of-type("+$("#companyListSelect2 option:selected").val()+") td:nth-of-type(3) b").text();
     }
 }
