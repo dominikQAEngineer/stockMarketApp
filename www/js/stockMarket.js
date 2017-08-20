@@ -1,10 +1,14 @@
 var options = { frequency: 300 };  // Update every 0.3 seconds
 var htmlOfPage = "";
+var wig40IndexLocal = "";
+var $companyList = {};
+var url = "http://mybank.pl/gielda/indeks-mwig40.html";
+
 //Function responsible for refresh current stock index after movement of device (not working on browser
 function refreshMovement(acceleration) {
     var deviceManufacturer  = device.manufacturer;
     if(acceleration.z<0 && deviceManufacturer!="unknown")
-        getAllIndeces();
+        loadCompanyList();
     }
 function onError() {
     alert('There is some kind of problem with accelerator!');
@@ -23,9 +27,7 @@ function onDeviceReady() {
     }
 }
 function loadCompanyList(){
-    var url = "http://mybank.pl/gielda/indeks-mwig40.html";
-    var $companyList = $('#companyListSelect2');
-    var wig40IndexLocal;
+$companyList = $('#companyListSelect2');
     htmlOfPage =
     $.ajax({
                 async:false,
@@ -36,9 +38,12 @@ function loadCompanyList(){
 //                        document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =
                         wig40IndexLocal =
                         $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
+
               }
               }).responseText;
               window.localStorage.setItem("wig40IndexLocal", wig40IndexLocal);
+
+//              setWIG40IndexOnHTML(setWIG40IndexLocal(getWIG40IndexFromPage));
               document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
 
               $companyList.empty();
@@ -63,7 +68,6 @@ function loadCompanyList(){
 //            }
 }
 function getAllIndeces(){
-    var url = "http://mybank.pl/gielda/indeks-mwig40.html";
     var allCompanyInfoStorage = new Array();
 
     //    htmlOfPage =
