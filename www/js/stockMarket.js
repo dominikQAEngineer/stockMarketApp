@@ -3,30 +3,6 @@ var htmlOfPage = "";
 var wig40IndexLocal = "";
 var $companyList = {};
 var url = "http://mybank.pl/gielda/indeks-mwig40.html";
-function getWIG40IndexFromPage(){
-    htmlOfPage =
-    $.ajax({
-                async:false,
-                type: "GET",
-                url: url,
-                dataType: "html",
-                success: function (data) {
-//                        document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =
-                        wig40IndexLocal =
-                        $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
-
-              }
-              }).responseText;
-     return wig40IndexLocal;
-}
-function setWIG40IndexLocal(callback){
-     window.localStorage.setItem("wig40IndexLocal", callback());
-     return window.localStorage.getItem("wig40IndexLocal");
-}
-function setWIG40IndexOnHTML(callback){
-//    document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
-document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  callback;
-}
 
 //Function responsible for refresh current stock index after movement of device (not working on browser
 function refreshMovement(acceleration) {
@@ -59,8 +35,8 @@ $companyList = $('#companyListSelect2');
                 url: url,
                 dataType: "html",
                 success: function (data) {
-                        document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =
-//                        wig40IndexLocal =
+//                        document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =
+                        wig40IndexLocal =
                         $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
 
               }
@@ -68,7 +44,7 @@ $companyList = $('#companyListSelect2');
               window.localStorage.setItem("wig40IndexLocal", wig40IndexLocal);
 
 //              setWIG40IndexOnHTML(setWIG40IndexLocal(getWIG40IndexFromPage));
-//              document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
+              document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
 
               $companyList.empty();
               $companyList.append('<option value="-1">Wybierz spolke</option>');
@@ -79,17 +55,17 @@ $companyList = $('#companyListSelect2');
                 }
 
     window.localStorage.setItem("listOfCompanyStorage", JSON.stringify(listOfCompanyStorage));
-//    var retrieveInfo = window.localStorage.getItem("listOfCompanyStorage");
-//    var parsedInfo = JSON.parse(retrieveInfo);
-//    for(var i=0;i<40;i++){
-//            $companyList.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
-//            }
-//// Without localStorage:
-    for(var i=3;i<=42;i++){
-            $companyList.append('<option value="'+
-            i+
-            '">'+$(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(1) b").text()+'</option>');
+    var retrieveInfo = window.localStorage.getItem("listOfCompanyStorage");
+    var parsedInfo = JSON.parse(retrieveInfo);
+    for(var i=0;i<40;i++){
+            $companyList.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
             }
+//// Without localStorage:
+//    for(var i=3;i<=42;i++){
+//            $companyList.append('<option value="'+
+//            i+
+//            '">'+$(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(1) b").text()+'</option>');
+//            }
 }
 function getAllIndeces(){
     var allCompanyInfoStorage = new Array();
