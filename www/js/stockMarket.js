@@ -17,15 +17,14 @@ function getWIG40IndexFromPage(){
 
               }
               }).responseText;
-
      return wig40IndexLocal;
 }
 function setWIG40IndexLocal(callback){
-     window.localStorage.setItem("wig40IndexLocal", callback());
-     return window.localStorage.getItem("wig40IndexLocal");
+     window.sessionStorage.setItem("wig40IndexLocal", callback());
+     return window.sessionStorage.getItem("wig40IndexLocal");
 }
 function setWIG40IndexOnHTML(callback){
-//    document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
+//    document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.sessionStorage.getItem("wig40IndexLocal");
 document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  callback;
 }
 
@@ -66,10 +65,10 @@ $companyList = $('#companyListSelect2');
 //
 //              }
 //              }).responseText;
-//              window.localStorage.setItem("wig40IndexLocal", wig40IndexLocal);
+//              window.sessionStorage.setItem("wig40IndexLocal", wig40IndexLocal);
 
               setWIG40IndexOnHTML(setWIG40IndexLocal(getWIG40IndexFromPage));
-//              document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
+//              document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.sessionStorage.getItem("wig40IndexLocal");
 
               $companyList.empty();
               $companyList.append('<option value="-1">Wybierz spolke</option>');
@@ -79,13 +78,13 @@ $companyList = $('#companyListSelect2');
                 listOfCompanyStorage.push($(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(1) b").text());
                 }
 
-    window.localStorage.setItem("listOfCompanyStorage", JSON.stringify(listOfCompanyStorage));
-    var retrieveInfo = window.localStorage.getItem("listOfCompanyStorage");
+    window.sessionStorage.setItem("listOfCompanyStorage", JSON.stringify(listOfCompanyStorage));
+    var retrieveInfo = window.sessionStorage.getItem("listOfCompanyStorage");
     var parsedInfo = JSON.parse(retrieveInfo);
     for(var i=0;i<40;i++){
             $companyList.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
             }
-//// Without localStorage:
+//// Without sessionStorage:
 //    for(var i=3;i<=42;i++){
 //            $companyList.append('<option value="'+
 //            i+
@@ -126,7 +125,7 @@ function getAllIndeces(){
         //            company.companyName, company.measureTime, company.curIndex, company.prevIndex, company.percentChange, company.pointChange, company.curAssets);
 
     }
-    window.localStorage.setItem("allCompanyInfoStorage", JSON.stringify(allCompanyInfoStorage));
+    window.sessionStorage.setItem("allCompanyInfoStorage", JSON.stringify(allCompanyInfoStorage));
 }
 function getSelectedCompanyInformation(){
     if( $("#companyListSelect2 option:selected").val()!=-1){
