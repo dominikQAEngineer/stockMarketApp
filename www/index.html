@@ -12,10 +12,54 @@
         <title>stockMarketApp</title>
     </head>
 
-    <body style="margin: 0px;" bgcolor="#21272d" onload="start();">
-        <div data-role="page" id="mainPage">
+    <body style="margin: 0px;" bgcolor="#21272d" onload="start(); ">
+
+        <!-- STRONA z PERSONALIZACJA -->
+
+<div data-role="page" id="mainPage3" class="ui-body-b">
         <div data-role="header">
-        <h1>Main Page</h1>
+            <h1>Wybrane spółki :</h1>
+        </div>
+        <div data-role="main" class="ui-content" >
+            <div class="ui-grid-solo" >
+                   
+                    <div class="ui-field-contain">
+                        <select name="select-custom" id="select-custom" multiple="multiple" data-native-menu="false">
+                            <option>Wybierz wybrane spółki</option>
+                            <option value="1">The 1st Option</option>
+                            <option value="2" selected="selected">The 2nd Option</option>
+                            <option value="3" selected="selected">The 3rd Option</option>
+                            <option value="4">The 4th Option</option>
+                        </select>
+                    </div>
+                
+                    <form>
+                    <div class="wig40CompanyList">
+                        <label>Lista spółek</label>
+                        <select name="select-choice-a" id="companyListSelect3">
+                            <option value="-1">Wybierz spółkę</option>
+                        </select>
+                    </div>
+                </form>
+                <div class="selectedCompanyIndexInfo3">
+                    <input type="button" id="getSelectedCompanyIndex3" value="Get selected company index" onclick="getSelectedCompanyInformation()"/>
+                    <label>Indeks wybranej spolki:</label><a id="currentIndexValue3"></a>
+                </div>
+            </div>
+            <div class="ui-grid-a">
+                <div class="ui-block-a"><a class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" href="#mainPage2" data-transition="slide">Previous</a></div>
+                <div class="ui-block-b"><a class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" href="#mainPage" data-transition="slide">Next</a></div>
+            </div>
+            <div data-role="footer">
+                    <h1>Footer Text</h1>
+                  </div>
+        </div>
+    </div>
+ <!-- STRONA index wszystkich spolek -->
+
+        <div data-role="page" id="mainPage" class="ui-body-b">
+        <div data-role="header">
+        <h1>Indeks wszystkig spółek WIG40</h1>
         </div>
         <div data-role="main" class="ui-content" >
         <div class="ui-grid-solo" >
@@ -37,17 +81,20 @@
             <!--</div>-->
         </div>
         <div class="ui-grid-a">
-            <div class="ui-block-a"><a class="ui-shadow ui-btn ui-corner-all" href="#mainPage2">Previous</a></div>
-            <div class="ui-block-b"><a class="ui-shadow ui-btn ui-corner-all" href="#mainPage2">Next</a></div>
+            <div class="ui-block-a"><a class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" href="#mainPage3" data-transition="slide">Previous</a></div>
+            <div class="ui-block-b"><a class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" href="#mainPage2" data-transition="slide">Next</a></div>
         </div>
+        <div data-role="footer">
+                <h1>Footer Text</h1>
+              </div>
         </div>
         </div>
 
-    <!--STRONA 2-->
+    <!--STRONA z info o wybranej spolce-->
 
-        <div data-role="page" id="mainPage2">
+        <div data-role="page" id="mainPage2" class="ui-body-b">
             <div data-role="header">
-                <h1>Main Page2</h1>
+                <h1>Informacje o wybranej spółce</h1>
             </div>
             <div data-role="main" class="ui-content" >
                 <div class="ui-grid-solo" >
@@ -69,10 +116,16 @@
                     </div>
                 </div>
                 <div class="ui-grid-a">
-                    <div class="ui-block-a"><a class="ui-shadow ui-btn ui-corner-all" href="#mainPage">Previous</a></div>
-                    <div class="ui-block-b"><a class="ui-shadow ui-btn ui-corner-all" href="#mainPage">Next</a></div>
+                    <div class="ui-block-a"><a class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" href="#mainPage" data-transition="slide">Previous</a></div>
+                    <div class="ui-block-b"><a class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" href="#mainPage3" data-transition="slide">Next</a></div>
                 </div>
+                <div data-role="footer">
+                        <h1>Footer Text</h1>
+                      </div>
             </div>
         </div>
+
+        
+
     </body>
 </html>
