@@ -1,5 +1,34 @@
 var options = { frequency: 300 };  // Update every 0.3 seconds
 var htmlOfPage = "";
+var wig40IndexLocal = "";
+var $companyList = {};
+var url = "http://mybank.pl/gielda/indeks-mwig40.html";
+function getWIG40IndexFromPage(){
+    htmlOfPage =
+    $.ajax({
+                async:false,
+                type: "GET",
+                url: url,
+                dataType: "html",
+                success: function (data) {
+//                        document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =
+                        wig40IndexLocal =
+                        $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
+
+              }
+              }).responseText;
+
+     return wig40IndexLocal;
+}
+function setWIG40IndexLocal(callback){
+     window.localStorage.setItem("wig40IndexLocal", callback());
+     return window.localStorage.getItem("wig40IndexLocal");
+}
+function setWIG40IndexOnHTML(callback){
+//    document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
+document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  callback;
+}
+
 //Function responsible for refresh current stock index after movement of device (not working on browser
 function refreshMovement(acceleration) {
     var deviceManufacturer  = device.manufacturer;
@@ -23,25 +52,24 @@ function onDeviceReady() {
     }
 }
 function loadCompanyList(){
-    var url = "http://mybank.pl/gielda/indeks-mwig40.html";
-    var $companyList = $('#companyListSelect2');
-    var wig40IndexLocal;
-    htmlOfPage =
-    $.ajax({
-                async:false,
-                type: "GET",
-                url: url,
-                dataType: "html",
-                success: function (data) {
-//                        document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =
-                        wig40IndexLocal =
-                        $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
+$companyList = $('#companyListSelect2');
+//    htmlOfPage =
+//    $.ajax({
+//                async:false,
+//                type: "GET",
+//                url: url,
+//                dataType: "html",
+//                success: function (data) {
+////                        document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =
+//                        wig40IndexLocal =
+//                        $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
+//
+//              }
+//              }).responseText;
+//              window.localStorage.setItem("wig40IndexLocal", wig40IndexLocal);
 
-                        window.localStorage.setItem("wig40IndexLocal", wig40IndexLocal);
-                        document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
-              }
-              }).responseText;
-
+              setWIG40IndexOnHTML(setWIG40IndexLocal(getWIG40IndexFromPage));
+//              document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
 
               $companyList.empty();
               $companyList.append('<option value="-1">Wybierz spolke</option>');
@@ -65,7 +93,6 @@ function loadCompanyList(){
 //            }
 }
 function getAllIndeces(){
-    var url = "http://mybank.pl/gielda/indeks-mwig40.html";
     var allCompanyInfoStorage = new Array();
 
     //    htmlOfPage =
