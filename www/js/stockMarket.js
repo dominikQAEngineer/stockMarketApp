@@ -59,8 +59,8 @@ $companyList = $('#companyListSelect2');
                 url: url,
                 dataType: "html",
                 success: function (data) {
-//                        document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =
-                        wig40IndexLocal =
+                        document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =
+//                        wig40IndexLocal =
                         $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
 
               }
@@ -68,7 +68,7 @@ $companyList = $('#companyListSelect2');
               window.localStorage.setItem("wig40IndexLocal", wig40IndexLocal);
 
 //              setWIG40IndexOnHTML(setWIG40IndexLocal(getWIG40IndexFromPage));
-              document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
+//              document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
 
               $companyList.empty();
               $companyList.append('<option value="-1">Wybierz spolke</option>');
