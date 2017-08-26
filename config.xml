@@ -2,13 +2,13 @@
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>stockMarketMonitor</name>
     <description>
-        Stock Market Monitor Application. <br/>
-                 Aplikacja służąca do podglądu aktualnych notowań giełdowych mWIG40:<br/>
-        -Notowania będą pobierane z internetu<br/>
-        -możliwość spersonalizowania aplikacji w zalezności od preferencji uzytkownika (wyswietlanie poszczególnych notowań)<br/>
-        -odświeżanie danych przy pomocy gestów (przekręcenie telefonu w bok)<br/>
-        -udostępnianie wykresów giełdowych dla wybranej spółki (Pobrane z serwisu internetowego)<br/>
-        -Wyszukiwanie notowań konkretnej spółki<br/>
+        Stock Market Monitor Application. <br>a</br>
+                 Aplikacja służąca do podglądu aktualnych notowań giełdowych mWIG40:<br>a</br>
+        -Notowania będą pobierane z internetu<br>a</br>
+        -możliwość spersonalizowania aplikacji w zalezności od preferencji uzytkownika (wyswietlanie poszczególnych notowań)<br>a</br>
+        -odświeżanie danych przy pomocy gestów (przekręcenie telefonu w bok)<br>a</br>
+        -udostępnianie wykresów giełdowych dla wybranej spółki (Pobrane z serwisu internetowego)<br>a</br>
+        -Wyszukiwanie notowań konkretnej spółki<br>a</br>
     </description>
     <author email="dominik.platos@gmail.com.com" href="https://build.phonegap.com/apps/2763359/builds">
         Dominik Platos and Aleksandra Stadnik
