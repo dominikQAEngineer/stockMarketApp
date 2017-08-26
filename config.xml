@@ -1,12 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>stockMarketApp</name>
+    <name>stockMarketMonitor</name>
     <description>
-        Stock Market Application .
+        Stock Market Monitor Application.
+        Aplikacja służąca do podglądu aktualnych notowań giełdowych mWIG40.
+        -Notowania będą pobierane z internetu
+        -możliwość spersonalizowania aplikacji w zalezności od preferencji uzytkownika (wyswietlanie poszczególnych notowań)
+        -odświeżanie danych przy pomocy gestów (przekręcenie telefonu w bok)
+        -udostępnianie wykresów giełdowych dla wybranej spółki (Pobrane z serwisu internetowego)
+        -Wyszukiwanie notowań konkretnej spółki
     </description>
-    <author email="dominik.platos@gmail.com.com" href="#">
+    <author email="dominik.platos@gmail.com.com" href="https://build.phonegap.com/apps/2763359/builds">
         Dominik Platos and Aleksandra Stadnik
     </author>
+    <platform name="winphone" />
+    <platform name="android" />
+    <platform name="windows" />
     <preference name="SplashScreen" value="screen"/>
     <icon src="img/StockMarketAppIcon_PNG.png" width="57" height="57" density="mdpi" />
     <plugin name="cordova-plugin-device" spec="~1.1.4" />
@@ -19,8 +28,11 @@
 
     <splash src="img/logo.png" qualifier="mdpi" />
     <content src="index.html" />
+    <!--Defines the set of external domains the app is allowed to communicate with.-->
     <access origin="*" />
+    <!--Controls which URLs the WebView itself can be navigated to.-->
     <allow-navigation href="*" />
+    <!--Controls which URLs the app is allowed to ask the system to open.-->
     <allow-intent href="*" />
     <access origin="http://mybank.pl" />
 </widget>
