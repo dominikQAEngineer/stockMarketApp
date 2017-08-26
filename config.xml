@@ -2,20 +2,39 @@
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>stockMarketMonitor</name>
     <description>
-        <![CDATA[Stock Market Monitor Application. <br />
+        Stock Market Monitor Application. <br />
                  Aplikacja służąca do podglądu aktualnych notowań giełdowych mWIG40:<br />
         -Notowania będą pobierane z internetu<br />
         -możliwość spersonalizowania aplikacji w zalezności od preferencji uzytkownika (wyswietlanie poszczególnych notowań)<br />
         -odświeżanie danych przy pomocy gestów (przekręcenie telefonu w bok)<br />
         -udostępnianie wykresów giełdowych dla wybranej spółki (Pobrane z serwisu internetowego)<br />
-        -Wyszukiwanie notowań konkretnej spółki<br />]]>
+        -Wyszukiwanie notowań konkretnej spółki<br />
     </description>
     <author email="dominik.platos@gmail.com.com" href="https://build.phonegap.com/apps/2763359/builds">
         Dominik Platos and Aleksandra Stadnik
     </author>
     <platform name="winphone" />
-    <platform name="android" />
-    <platform name="windows" />
+    <platform name="browser">
+        <preference name="SplashScreen" value="img/logo.png" /> <!-- defaults to "/img/logo.png" -->
+        <preference name="SplashScreenDelay" value="3000" /> <!-- defaults to "3000" -->
+        <preference name="SplashScreenWidth" value="300" /> <!-- defaults to "170" -->
+        <preference name="SplashScreenHeight" value="300" /> <!-- defaults to "200" -->
+    </platform>
+    <platform name="android" >
+        <splash src="img/logo.png" density="land-hdpi"/>
+        <splash src="img/logo.png" density="land-ldpi"/>
+        <splash src="img/logo.png" density="land-mdpi"/>
+        <splash src="img/logo.png" density="land-xhdpi"/>
+
+        <splash src="img/logo.png" density="port-hdpi"/>
+        <splash src="img/logo.png" density="port-ldpi"/>
+        <splash src="img/logo.png" density="port-mdpi"/>
+        <splash src="img/logo.png" density="port-xhdpi"/>
+    </platform>
+    <platform name="windows" >
+        <splash src="img/logo.png" width="620" height="300"/>
+        <splash src="img/logo.png" width="1152" height="1920"/>
+    </platform>
     <preference name="SplashScreen" value="screen"/>
     <icon src="img/StockMarketAppIcon_PNG.png" width="57" height="57" density="mdpi" />
     <plugin name="cordova-plugin-device" spec="~1.1.4" />
@@ -25,8 +44,6 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.2" />
     <plugin name="cordova-plugin-whitelist" spec="~1.3.2" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.4" />
-    <splash platform="android" qualifier="port-mdpi" src="img/logo.png" />
-    <splash platform="windows" src="img/logo.png" width="1152" height="1920"/>
     <content src="index.html" />
     <!--Defines the set of external domains the app is allowed to communicate with.-->
     <access origin="*" />
