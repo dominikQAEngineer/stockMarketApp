@@ -31,10 +31,13 @@
         <splash src="img/logo.png" density="port-mdpi"/>
         <splash src="img/logo.png" density="port-xhdpi"/>
     </platform>
-    <platform name="windows" >
-        <splash src="img/logo.png" width="620" height="300"/>
-        <splash src="img/logo.png" target="SplashScreen.scale-100.png" />
-    </platform>
+    <!--error APPX1619:
+        App manifest references the splash screen image 'images\SplashScreen.scale-100.png' which does not have valid dimensions.
+        It must be 620x300 pixels. [C:\cygwin\tmp\gimlet\2763359\project\CordovaApp.Windows10.jsproj]-->
+    <!--<platform name="windows" >-->
+        <!--<splash src="img/logo.png" width="620" height="300"/>-->
+        <!--<splash src="img/logo.png" target="SplashScreen.scale-100.png" />-->
+    <!--</platform>-->
     <preference name="SplashScreen" value="screen"/>
     <icon src="img/StockMarketAppIcon_PNG.png" width="57" height="57" density="mdpi" />
     <plugin name="cordova-plugin-device" spec="~1.1.4" />
