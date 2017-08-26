@@ -33,7 +33,6 @@
     </platform>
     <platform name="windows" >
         <splash src="img/logo.png" width="620" height="300"/>
-        <splash src="img/logo.png" width="1152" height="1920"/>
     </platform>
     <preference name="SplashScreen" value="screen"/>
     <icon src="img/StockMarketAppIcon_PNG.png" width="57" height="57" density="mdpi" />
