@@ -21,6 +21,7 @@
         <preference name="SplashScreenHeight" value="300" /> <!-- defaults to "200" -->
     </platform>
     <platform name="android" >
+        <!--TODO: Ustawic rozmiar splash screen (np zablokowac autodopasowanie)-->
         <splash src="img/logo.png" />
         <preference name="AutoHideSplashScreen" value="true" />
         <preference name="SplashScreenDelay" value="3000" />

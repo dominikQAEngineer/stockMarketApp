@@ -42,8 +42,6 @@ $companyList = $('#companyListSelect2');
               }
               }).responseText;
               window.localStorage.setItem("wig40IndexLocal", wig40IndexLocal);
-
-//              setWIG40IndexOnHTML(setWIG40IndexLocal(getWIG40IndexFromPage));
               document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
 
               $companyList.empty();
@@ -69,22 +67,6 @@ $companyList = $('#companyListSelect2');
 }
 function getAllIndeces(){
     var allCompanyInfoStorage = new Array();
-
-    //    htmlOfPage =
-    //    $.ajax({
-    //                async:false,
-    //                type: "GET",
-    //                url: url,
-    //                dataType: "html",
-    //                success: function (data) {
-    //              document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =
-    //              $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
-    //                }
-    ////                error: function(xhr, textStatus, errorThrown) {
-    ////                        $("#status").val("Unavailable: " + textStatus);
-    ////                    }
-    //              }).responseText;
-    //              htmlOfPage=$(htmlOfPage).find(".g_tab:nth-of-type(3)")
     for(var i=3;i<=42;i++){
         // new object every time, Calling push will not copy your object, because JavaScript Objects are passed by reference: you're pushing the same Object as every array entry.
         var company ={companyName: "", measureTime: "", curIndex: "", prevIndex: "", percentChange: "", pointChange: "", curAssets: ""};
@@ -96,10 +78,6 @@ function getAllIndeces(){
             company.pointChange=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(6)").text()
             company.curAssets=    $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(7)").text()
             allCompanyInfoStorage.push(company)
-        //            console.log(allCompanyInfoStorage.push(company)+allCompanyInfoStorage[i-3].companyName);
-        //            console.log("Nazwa spolki: %s, Czas pomiaru: %s, Aktualny Indeks %s, Poprzedni Indeks %s, Zmiana procentowa %s, Zmiana punktowa %s, Obrot %s",
-        //            company.companyName, company.measureTime, company.curIndex, company.prevIndex, company.percentChange, company.pointChange, company.curAssets);
-
     }
     window.localStorage.setItem("allCompanyInfoStorage", JSON.stringify(allCompanyInfoStorage));
 }
@@ -107,5 +85,18 @@ function getSelectedCompanyInformation(){
     if( $("#companyListSelect2 option:selected").val()!=-1){
         document.querySelector(".selectedCompanyIndexInfo2 a#currentIndexValue2").innerHTML =
         $(htmlOfPage).find("tr:nth-of-type("+$("#companyListSelect2 option:selected").val()+") td:nth-of-type(3) b").text();
+
+        srcOfSelectedCompany = $(htmlOfPage).find("tr:nth-of-type("+$("#companyListSelect2 option:selected").val()+") td:nth-of-type(1) a").attr('href');
+        $.ajax({
+                        async:false,
+                        type: "GET",
+                        url: srcOfSelectedCompany,
+                        dataType: "html",
+                        success: function (data) {
+                               document.querySelector(".selectedCompanyIndexInfo2 img#wykresWybranejSpolki").src =
+                                $(data).find('#wykres_indeksu').attr('src');
+                      }
+                      }).responseText;
+
     }
 }
