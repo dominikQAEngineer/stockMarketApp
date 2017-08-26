@@ -21,7 +21,11 @@
         <preference name="SplashScreenHeight" value="300" /> <!-- defaults to "200" -->
     </platform>
     <platform name="android" >
-        <splash src="img/logo.png" qualifier="mdpi" />
+        <splash src="img/logo.png" />
+        <preference name="AutoHideSplashScreen" value="true" />
+        <preference name="SplashScreenDelay" value="3000" />
+        <preference name="FadeSplashScreen" value="true"/>
+        <preference name="FadeSplashScreenDuration" value="750"/>
     </platform>
     <!--error APPX1619:
         App manifest references the splash screen image 'images\SplashScreen.scale-100.png' which does not have valid dimensions.
