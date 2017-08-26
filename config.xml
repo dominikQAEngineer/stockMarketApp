@@ -2,13 +2,13 @@
 <widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>stockMarketMonitor</name>
     <description>
-        Stock Market Monitor Application. <br>a</br>
-                 Aplikacja służąca do podglądu aktualnych notowań giełdowych mWIG40:<br>a</br>
-        -Notowania będą pobierane z internetu<br>a</br>
-        -możliwość spersonalizowania aplikacji w zalezności od preferencji uzytkownika (wyswietlanie poszczególnych notowań)<br>a</br>
-        -odświeżanie danych przy pomocy gestów (przekręcenie telefonu w bok)<br>a</br>
-        -udostępnianie wykresów giełdowych dla wybranej spółki (Pobrane z serwisu internetowego)<br>a</br>
-        -Wyszukiwanie notowań konkretnej spółki<br>a</br>
+        Stock Market Monitor Application. 
+                 Aplikacja służąca do podglądu aktualnych notowań giełdowych mWIG40:
+        -Notowania będą pobierane z internetu
+        -możliwość spersonalizowania aplikacji w zalezności od preferencji uzytkownika (wyswietlanie poszczególnych notowań)
+        -odświeżanie danych przy pomocy gestów (przekręcenie telefonu w bok)
+        -udostępnianie wykresów giełdowych dla wybranej spółki (Pobrane z serwisu internetowego)
+        -Wyszukiwanie notowań konkretnej spółki
     </description>
     <author email="dominik.platos@gmail.com.com" href="https://build.phonegap.com/apps/2763359/builds">
         Dominik Platos and Aleksandra Stadnik
@@ -21,15 +21,7 @@
         <preference name="SplashScreenHeight" value="300" /> <!-- defaults to "200" -->
     </platform>
     <platform name="android" >
-        <splash src="img/logo.png" density="land-hdpi"/>
-        <splash src="img/logo.png" density="land-ldpi"/>
-        <splash src="img/logo.png" density="land-mdpi"/>
-        <splash src="img/logo.png" density="land-xhdpi"/>
-
-        <splash src="img/logo.png" density="port-hdpi"/>
-        <splash src="img/logo.png" density="port-ldpi"/>
-        <splash src="img/logo.png" density="port-mdpi"/>
-        <splash src="img/logo.png" density="port-xhdpi"/>
+        <splash src="img/logo.png" qualifier="mdpi" />
     </platform>
     <!--error APPX1619:
         App manifest references the splash screen image 'images\SplashScreen.scale-100.png' which does not have valid dimensions.
