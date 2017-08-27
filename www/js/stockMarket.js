@@ -92,7 +92,7 @@ $prefCompanySelect = $('#selectPrefCompany');
         else{
             $prefCompanySelect.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
         }
-        $prefCompanySelect.selectmenu('refresh');
+        $prefCompanySelect.selectmenu('refresh',true);
     }
 }
 function getAllIndeces(){
