@@ -23,7 +23,10 @@
         <div data-role="main" class="ui-content" >
             <div class="ui-grid-solo" >
                    
+                    <label>Wybierz wybrane spółki:</label>
+                    
                     <div class="ui-field-contain">
+                            
                         <select name="select-custom" id="select-custom" multiple="multiple" data-native-menu="false">
                             <option>Wybierz wybrane spółki</option>
                             <option value="1">The 1st Option</option>
@@ -33,22 +36,10 @@
                         </select>
                     </div>
 
-                    <form>
-                    <div class="wig40CompanyList">
-                        <label>Lista spółek</label>
-                        <select name="select-choice-a" id="companyListSelect3">
-                            <option value="-1">Wybierz spółkę</option>
-                        </select>
-                    </div>
-                </form>
-                <div class="selectedCompanyIndexInfo3">
-                    <input type="button" id="getSelectedCompanyIndex3" value="Get selected company index" onclick="getSelectedCompanyInformation()"/>
-                    <label>Indeks wybranej spolki:</label><a id="currentIndexValue3"></a>
-                </div>
             </div>
             <div class="ui-grid-a ui-responsive">
-                <div class="ui-block-a"><a class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" href="#mainPage2" data-transition="slide">Previous</a></div>
-                <div class="ui-block-b"><a class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" href="#mainPage" data-transition="slide">Next</a></div>
+                <div class="ui-block-a"><a class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" href="#mainPage2" data-transition="slide" data-direction="reverse">Poprzednia strona</a></div>
+                <div class="ui-block-b"><a class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" href="#mainPage" data-transition="slide">Następna strona</a></div>
             </div>
             <div data-role="footer">
                 
@@ -65,15 +56,15 @@
         </div>
         <div data-role="main" class="ui-content" >
         <div class="ui-grid-solo" >
-            <input type="button" id="getAllStockIndeces" value="Get All indeces" onclick="getAllIndeces()"/>
+            <input type="button" id="getAllStockIndeces" value="Pobierz indeks wszystich spółek" onclick="getAllIndeces()"/>
                 <div class="stockInformation">
-                    <label>Indeks wig40:</label><a id="wig40StockIndex"></a>
+                    <label>Indeks WIG40:</label><a id="wig40StockIndex"></a>
                 </div>
           
         </div>
         <div class="ui-grid-a ui-responsive">
-            <div class="ui-block-a"><a class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" href="#mainPage3" data-transition="slide">Previous</a></div>
-            <div class="ui-block-b"><a class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" href="#mainPage2" data-transition="slide">Next</a></div>
+            <div class="ui-block-a"><a class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" href="#mainPage3" data-transition="slide" data-direction="reverse">Poprzednia strona</a></div>
+            <div class="ui-block-b"><a class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" href="#mainPage2" data-transition="slide">Następna strona</a></div>
         </div>
         <div data-role="footer">
                 <label>Czas ostatniego pobrania danych:</label>                    
@@ -100,15 +91,15 @@
                         </div>
                     </form>
                     <div class="selectedCompanyIndexInfo2">
-                        <input type="button" id="getSelectedCompanyIndex2" value="Get selected company index" onclick="getSelectedCompanyInformation()"/>
+                        <input type="button" id="getSelectedCompanyIndex2" value="Pobierz informacje o wybranej spółce" onclick="getSelectedCompanyInformation()"/>
                         <label>Indeks wybranej spolki:</label><a id="currentIndexValue2"></a>
                         <label>Wykres giełdowy wybranej spółki:</label>
                         <img id="wykresWybranejSpolki" src="" alt="[tu pojawi sie wykres]" data-rel="external"/>
                     </div>
                 </div>
                 <div class="ui-grid-a ui-responsive">
-                    <div class="ui-block-a"><a class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" href="#mainPage" data-transition="slide">Previous</a></div>
-                    <div class="ui-block-b"><a class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" href="#mainPage3" data-transition="slide">Next</a></div>
+                    <div class="ui-block-a"><a class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" href="#mainPage" data-transition="slide" data-direction="reverse">Poprzednia strona</a></div>
+                    <div class="ui-block-b"><a class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" href="#mainPage3" data-transition="slide">Następna strona</a></div>
                 </div>
                 <div data-role="footer">
                         <label>Czas ostatniego pobrania danych:</label>                    
