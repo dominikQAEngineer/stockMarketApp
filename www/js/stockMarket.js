@@ -3,10 +3,7 @@ var htmlOfPage = "";
 var wig40IndexLocal = "";
 var $companyList = {};
 var $prefCompanySelect = {};
-var prefCompanySelected = new Array();
 var url = "http://mybank.pl/gielda/indeks-mwig40.html";
-
-
 //Function responsible for refresh current stock index after movement of device (not working on browser
 function refreshMovement(acceleration) {
     var deviceManufacturer  = device.manufacturer;
@@ -25,6 +22,7 @@ function start(){
 }
 
 function saveSelectedCompanyList(){
+    var prefCompanySelected = new Array();
     var prefCompanyList = document.getElementById("selectPrefCompany");
     for(var i=0; i < prefCompanyList.length ; i++){
         if(prefCompanyList.options[i].selected)
@@ -81,24 +79,20 @@ $prefCompanySelect = $('#selectPrefCompany');
             }
 
     $prefCompanySelect.empty();
+    var retrieveSelectedCompanyInfo = window.localStorage.getItem("prefCompanySelected");
+    var parsedSelectedCompanyInfo = JSON.parse(retrieveSelectedCompanyInfo);
+
     for(var i=0;i<40;i++){
-        if(prefCompanySelected != undefined || prefCompanySelected.length != 0){
-            if(prefCompanySelected[i] === "true")
-                $prefCompanySelect.append('<option value="'+(i+3)+'" selected="selected">'+parsedInfo[i]+'</option>');
+        if(parsedSelectedCompanyInfo != undefined || parsedSelectedCompanyInfo.length != 0){
+            if(parsedSelectedCompanyInfo[i] === "true")
+            $prefCompanySelect.append('<option value="'+(i+3)+'" selected="selected">'+parsedInfo[i]+'</option>');
             else
-                $prefCompanySelect.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
+            $prefCompanySelect.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
         }
         else{
             $prefCompanySelect.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
         }
-
     }
-//// Without localStorage:
-//    for(var i=3;i<=42;i++){
-//            $companyList.append('<option value="'+
-//            i+
-//            '">'+$(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(1) b").text()+'</option>');
-//            }
 }
 function getAllIndeces(){
     var allCompanyInfoStorage = new Array();

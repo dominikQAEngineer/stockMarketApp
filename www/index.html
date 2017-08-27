@@ -18,22 +18,20 @@
 
     <div data-role="page" id="mainPage3" class="ui-body-b">
         <div data-role="header">
-            <h1>Wybrane spółki :</h1>
+            <h1>Wybrane spółki:</h1>
         </div>
         <div data-role="main" class="ui-content" >
             <div class="ui-grid-solo" >
-                    <label>Wybierz wybrane spółki:</label>
-                    <div class="ui-field-contain">
-                        <form>
-                            <label>Wybierz obserwowane spółki</label>
-                            <select name="selectPrefCompany" id="selectPrefCompany" multiple="multiple" data-native-menu="false">
-                                <!--<option value="1">The 1st Option</option>-->
-                                <!--<option value="2" selected="selected">The 2nd Option</option>-->
-                                <!--<option value="3" selected="selected">The 3rd Option</option>-->
-                                <!--<option value="4">The 4th Option</option>-->
-                            </select>
-                        </form>
-                    </div>
+                <label>Wybierz obserwowane spółki</label>
+                <div class="ui-field-contain">
+                        <select name="select-custom-19" id="selectPrefCompany" multiple="multiple" data-native-menu="false">
+                            <option>Wybierz elementy</option>
+                    <!--        <option value="1">The 1st Option</option>-->
+                    <!--        <option value="2" selected="selected">The 2nd Option</option>-->
+                    <!--        <option value="3" selected="selected">The 3rd Option</option>-->
+                    <!--        <option value="4">The 4th Option</option>-->
+                        </select>
+                </div>
                 <input type="button" id="saveSelectedPreferences" value="Zapisz wybrane spółki" onclick="saveSelectedCompanyList()"/>
             </div>
             <div class="ui-grid-a ui-responsive">
