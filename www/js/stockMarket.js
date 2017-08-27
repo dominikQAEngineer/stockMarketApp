@@ -2,20 +2,40 @@ var options = { frequency: 300 };  // Update every 0.3 seconds
 var htmlOfPage = "";
 var wig40IndexLocal = "";
 var $companyList = {};
+var $prefCompanySelect = {};
+var prefCompanySelected = new Array();
 var url = "http://mybank.pl/gielda/indeks-mwig40.html";
+
 
 //Function responsible for refresh current stock index after movement of device (not working on browser
 function refreshMovement(acceleration) {
     var deviceManufacturer  = device.manufacturer;
-    if(acceleration.z<0 && deviceManufacturer!="unknown")
+    var networkState = navigator.connection.type;
+    if(acceleration.z<0 && deviceManufacturer!="unknown" && networkState != Connection.NONE)
         loadCompanyList();
-    }
+    else if(networkState === Connection.NONE)
+    alert('There is no internet connection, connect to internet');
+
+}
 function onError() {
     alert('There is some kind of problem with accelerator!');
 }
 function start(){
     document.addEventListener("deviceready",onDeviceReady, false);
 }
+
+function saveSelectedCompanyList(){
+    var prefCompanyList = document.getElementById("selectPrefCompany");
+    for(var i=0; i < prefCompanyList.length ; i++){
+        if(prefCompanyList.options[i].selected)
+            prefCompanySelected.push("true");
+        else
+            prefCompanySelected.push("false");
+    }
+
+    window.localStorage.setItem("prefCompanySelected", JSON.stringify(prefCompanySelected));
+}
+
 function onDeviceReady() {
     var networkState = navigator.connection.type;
     if(networkState != Connection.NONE){
@@ -28,6 +48,7 @@ function onDeviceReady() {
 }
 function loadCompanyList(){
 $companyList = $('#companyListSelect2');
+$prefCompanySelect = $('#selectPrefCompany');
     htmlOfPage =
     $.ajax({
                 async:false,
@@ -58,6 +79,20 @@ $companyList = $('#companyListSelect2');
     for(var i=0;i<40;i++){
             $companyList.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
             }
+
+    $prefCompanySelect.empty();
+    for(var i=0;i<40;i++){
+        if(prefCompanySelected != undefined || prefCompanySelected.length != 0){
+            if(prefCompanySelected[i] === "true")
+                $prefCompanySelect.append('<option value="'+(i+3)+'" selected="selected">'+parsedInfo[i]+'</option>');
+            else
+                $prefCompanySelect.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
+        }
+        else{
+            $prefCompanySelect.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
+        }
+
+    }
 //// Without localStorage:
 //    for(var i=3;i<=42;i++){
 //            $companyList.append('<option value="'+
