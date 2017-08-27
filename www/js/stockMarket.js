@@ -22,9 +22,9 @@ function start(){
 }
 
 function saveSelectedCompanyList(){
-    var prefCompanySelected = new Array();
     var prefCompanyList = document.getElementById("selectPrefCompany");
     for(var i=0; i < prefCompanyList.length ; i++){
+    var prefCompanySelected = new Array();
         if(prefCompanyList.options[i].selected)
             prefCompanySelected.push("true");
         else
@@ -92,6 +92,7 @@ $prefCompanySelect = $('#selectPrefCompany');
         else{
             $prefCompanySelect.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
         }
+        $prefCompanySelect.selectmenu('refresh');
     }
 }
 function getAllIndeces(){
