@@ -46,7 +46,6 @@ function onDeviceReady() {
 }
 function loadCompanyList(){
 $companyList = $('#companyListSelect2');
-$prefCompanySelect = $('#selectPrefCompany');
     htmlOfPage =
     $.ajax({
                 async:false,
@@ -92,7 +91,8 @@ $prefCompanySelect = $('#selectPrefCompany');
             multiSelectOptionString += '<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>';
         }
     }
-    $prefCompanySelect.empty().append(multiSelectOptionString).selectmenu( "refresh", true );
+    $('#selectPrefCompany').empty().append(multiSelectOptionString).selectmenu( "refresh", true );
+    document.querySelector("#checkMultiselectOptions").innerHTML =  multiSelectOptionString;
 }
 function getAllIndeces(){
     var allCompanyInfoStorage = new Array();
