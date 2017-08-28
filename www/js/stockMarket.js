@@ -10,7 +10,7 @@ var wig40DailyMaxLocal = "";
 var wig40CurAssetsLocal = "";
 var wig40ImgSrcLocal = "";
 var $companyList = {};
-var multiSelectOptionString = '<option>Wybierz elementy</option>';
+var multiSelectOptionString = '';
 var url = "http://mybank.pl/gielda/indeks-mwig40.html";
 //Function responsible for refresh current stock index after movement of device (not working on browser
 function refreshMovement(acceleration) {
@@ -112,6 +112,7 @@ $companyList = $('#companyListSelect2');
     var retrieveSelectedCompanyInfo = window.localStorage.getItem("prefCompanySelected");
     var parsedSelectedCompanyInfo = JSON.parse(retrieveSelectedCompanyInfo);
 
+    multiSelectOptionString = '<option>Wybierz elementy</option>';
     for(var i=0;i<40;i++){
             $companyList.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
                     if(parsedSelectedCompanyInfo != undefined || parsedSelectedCompanyInfo != null){
@@ -125,6 +126,7 @@ $companyList = $('#companyListSelect2');
                     }
             }
     $('#selectPrefCompany').empty().append(multiSelectOptionString);
+    $('#selectPrefCompany').selectmenu();
     $('#selectPrefCompany').selectmenu('refresh');
     $('#selectPrefCompany').selectmenu('refresh', true);
 //    document.querySelector("#checkMultiselectOptions").innerHTML =  multiSelectOptionString;

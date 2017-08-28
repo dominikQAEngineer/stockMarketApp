@@ -52,16 +52,16 @@
 
 <!-- DROPDOWN -->
 <script>
-        /* When the user clicks on the button, 
+        /* When the user clicks on the button,
         toggle between hiding and showing the dropdown content */
         function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
-        
+
         // Close the dropdown if the user clicks outside of it
         window.onclick = function(event) {
           if (!event.target.matches('.dropbtn')) {
-        
+
             var dropdowns = document.getElementsByClassName("dropdown-content");
             var i;
             for (i = 0; i < dropdowns.length; i++) {
@@ -75,47 +75,38 @@
         </script>
 
     <body style="margin: 0px;" bgcolor="#21272d" onload="start(); ">
-
         <!-- STRONA z PERSONALIZACJA -->
            
     <div data-role="page" id="mainPage3" class="ui-body-b">
         <div data-role="header">
-               
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Menu</button>
+                <div id="myDropdown" class="dropdown-content" >
+                    <a href="#">O aplikacji</a>
+                    <a href="#">Zamknij</a>
+                </div>
+            </div>
             <h1>Wybrane spółki:</h1>
         </div>
         <div data-role="main" class="ui-content" >
-                <div class="dropdown">
-                        <button onclick="myFunction()" class="dropbtn">Menu</button>
-                          <div id="myDropdown" class="dropdown-content" >
-                            <a href="#">O aplikacji</a>
-                            <a href="#">Zamknij</a>
-                          </div>
-                        </div> 
+
             <div class="ui-grid-solo" >
                 <label>Wybierz obserwowane spółki</label>
                 <div class="ui-field-contain">
                     <form>
-                        <select name="select-custom-19" id="selectPrefCompany" multiple="multiple" data-native-menu="false">
-                    <!--        <option>Wybierz elementy</option>-->
-                    <!--        <option value="1">The 1st Option</option>-->
-                    <!--        <option value="2" selected="selected">The 2nd Option</option>-->
-                    <!--        <option value="3" selected="selected">The 3rd Option</option>-->
-                    <!--        <option value="4">The 4th Option</option>-->
-                        </select>
+                        <select name="select-custom-19" id="selectPrefCompany" multiple="multiple" data-native-menu="false"></select>
                     </form>
                 </div>
                 <input type="button" id="saveSelectedPreferences" value="Zapisz wybrane spółki" onclick="saveSelectedCompanyList()"/>
             </div>
-         
-        
         </div>
         <div data-role="footer" style="text-align:center;">
                 <a href="#mainPage2" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide" data-direction="reverse">Poprzednia strona</a>
                 <a href="#mainPage" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide" >Następna strona</a>
                 
-                <label>Czas ostatniego pobrania danych:</label>                    
-                <label>Czas ostatniego odświeżenia:</label>
-              </div>
+                <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageSelectedCompany"></a></label>
+                <label>Czas ostatniego odświeżenia:<a id="lastRefreshSelectedCompany"></a></label>
+        </div>
     </div>
  <!-- STRONA index wszystkich spolek -->
 
@@ -143,8 +134,8 @@
                 <a href="#mainPage3" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide" data-direction="reverse">Poprzednia strona</a>
                 <a href="#mainPage2" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide" >Następna strona</a>
                 
-                <label>Czas ostatniego pobrania danych:</label>                    
-                <label>Czas ostatniego odświeżenia:</label>
+                <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageWig40"></a></label>
+                <label>Czas ostatniego odświeżenia:<a id="lastRefreshTimeWig40"></a></label>
               </div>
         </div>
 
@@ -182,8 +173,8 @@
                     <a href="#mainPage" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide" data-direction="reverse">Poprzednia strona</a>
                     <a href="#mainPage3" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide" >Następna strona</a>
                     
-                    <label>Czas ostatniego pobrania danych:</label>                    
-                    <label>Czas ostatniego odświeżenia:</label>
+                    <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageAllCompany"></a></label>
+                    <label>Czas ostatniego odświeżenia:<a id="lastRefreshAllCompany"></a></label>
                   </div>
         </div>
 
