@@ -35,8 +35,6 @@
                         </select>
                     </form>
                 </div>
-                <input type="button" id="refreshSelect" value="Odswiez Select" onclick="checkLocalStorage()"/>
-                <label>Sprawdz pamiecLokalna:</label><a id="checkMultiselectOptionsLocalStorage"></a>
                 <input type="button" id="saveSelectedPreferences" value="Zapisz wybrane spółki" onclick="saveSelectedCompanyList()"/>
             </div>
             <!-- <div class="ui-grid-a ui-responsive">
@@ -56,21 +54,21 @@
 
         <div data-role="page" id="mainPage" class="ui-body-b">
         <div data-role="header">
-        <h1>Indeks wszystkig spółek WIG40</h1>
+        <h1>Ogólne informacje mWIG40</h1>
         </div>
         <div data-role="main" class="ui-content" >
         <div class="ui-grid-solo" >
-            <input type="button" id="getAllStockIndeces" value="Pobierz indeks wszystich spółek" onclick="getAllIndeces()"/>
                 <div class="stockInformation">
-                    <label>Indeks WIG40: <a id="wig40StockIndex"></a> </label>
-                    <label>Zmiana [%]: <a id=""></a></label>
-                    <label>Zmiana [pkt]: <a id=""></a></label>
-                    <label>Obrót[PLN]: <a id=""></a></label>
-                    <label>Dzienne min: <a id=""></a></label>
-                    <label>Dzienne max: <a id=""></a></label>
-
+                    <label>Kurs bieżący WIG40: <a id="wig40StockIndex"></a> </label>
+                    <label>Zmiana [%]: <a id="percentChangeWig40"></a></label>
+                    <label>Zmiana [pkt]: <a id="pointChangeWig40"></a></label>
+                    <label>Poprz. zamk.: <a id="prevClosureWig40"></a></label>
+                    <label>Otwarcie: <a id="todayOpeningWig40"></a></label>
+                    <label>Dzienne min: <a id="dailyMinWig40"></a></label>
+                    <label>Dzienne max: <a id="dailyMaxWig40"></a></label>
+                    <label>Obrót[PLN]: <a id="curAssetsWig40"></a></label>
+                    <img id="ogolnyWykresWig40" src="" alt="[wykres mWIG40]" data-rel="external" style='height: 100%; width: 100%; max-width: 600px;object-fit: contain'/>
                 </div>
-          
         </div>
         <div class="ui-grid-a ui-responsive">
             <div class="ui-block-a"><a class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" href="#mainPage3" data-transition="slide" data-direction="reverse">Poprzednia strona</a></div>
@@ -103,11 +101,11 @@
                     <div class="selectedCompanyIndexInfo2">
                         <input type="button" id="getSelectedCompanyIndex2" value="Pobierz informacje o wybranej spółce" onclick="getSelectedCompanyInformation()"/>
                         <label>Indeks wybranej spolki: <a id="currentIndexValue2"></a></label>
-                        <label>Zmiana [%]: <a id=""></a> </label>
-                        <label>Zmiana [pkt]: <a id=""></a></label>
-                        <label>Obrót[PLN]: <a id=""></a></label>
-                        <label>Dzienne min: <a id=""></a></label>
-                        <label>Dzienne max: <a id=""></a>  </label>                      
+                        <label>Zmiana [%]: <a id="percentChangeForCompany"></a> </label>
+                        <label>Zmiana [pkt]: <a id="pointChangeForCompany"></a></label>
+                        <label>Obrót[PLN]: <a id="curAssetsForCompany"></a></label>
+                        <label>Dzienne min: <a id="dailyMinForCompany"></a></label>
+                        <label>Dzienne max: <a id="dailyMaxForCompany"></a>  </label>
                         <label>Wykres giełdowy wybranej spółki:</label>
                         <img id="wykresWybranejSpolki" src="" alt="[tu pojawi sie wykres]" data-rel="external" style='height: 100%; width: 100%; max-width: 600px;object-fit: contain'/>
                     </div>
