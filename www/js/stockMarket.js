@@ -82,18 +82,19 @@ $prefCompanySelect = $('#selectPrefCompany');
     $prefCompanySelect.append('<option>Wybierz elementy</option>');
     var retrieveSelectedCompanyInfo = window.localStorage.getItem("prefCompanySelected");
     var parsedSelectedCompanyInfo = JSON.parse(retrieveSelectedCompanyInfo);
-
     for(var i=0;i<40;i++){
         if(parsedSelectedCompanyInfo != undefined || parsedSelectedCompanyInfo.length != 0){
             if(parsedSelectedCompanyInfo[i] === "true")
-            $prefCompanySelect.append('<option value="'+(i+3)+'" selected="selected">'+parsedInfo[i]+'</option>').selectmenu('refresh', true);
+            $prefCompanySelect.append('<option value="'+(i+3)+'" selected="selected">'+parsedInfo[i]+'</option>');
             else
-            $prefCompanySelect.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>').selectmenu('refresh', true);
+            $prefCompanySelect.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
         }
         else{
-            $prefCompanySelect.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>').selectmenu('refresh', true);
+            $prefCompanySelect.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
         }
     }
+    $prefCompanySelect.selectmenu();
+    $prefCompanySelect.selectmenu('refresh', true);
 }
 function getAllIndeces(){
     var allCompanyInfoStorage = new Array();
