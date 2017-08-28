@@ -12,16 +12,85 @@
         <title>stockMarketApp</title>
     </head>
 
+    <!-- DROPDOWN STYLE -->
+    <style>
+        .dropbtn {
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* .dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+} */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #21272d;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #21272d}
+.show {display:block;}
+</style>
+
+<!-- DROPDOWN -->
+<script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+        
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+          if (!event.target.matches('.dropbtn')) {
+        
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+              }
+            }
+          }
+        }
+        </script>
+
     <body style="margin: 0px;" bgcolor="#21272d" onload="start(); ">
 
         <!-- STRONA z PERSONALIZACJA -->
-
+           
     <div data-role="page" id="mainPage3" class="ui-body-b">
         <div data-role="header">
-                <a href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left">Home</a>
+               
             <h1>Wybrane spółki:</h1>
         </div>
         <div data-role="main" class="ui-content" >
+                <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">Menu</button>
+                          <div id="myDropdown" class="dropdown-content" >
+                            <a href="#">O aplikacji</a>
+                            <a href="#">Zamknij</a>
+                          </div>
+                        </div> 
             <div class="ui-grid-solo" >
                 <label>Wybierz obserwowane spółki</label>
                 <div class="ui-field-contain">
