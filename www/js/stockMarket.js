@@ -74,24 +74,21 @@ $companyList = $('#companyListSelect2');
     window.localStorage.setItem("listOfCompanyStorage", JSON.stringify(listOfCompanyStorage));
     var retrieveInfo = window.localStorage.getItem("listOfCompanyStorage");
     var parsedInfo = JSON.parse(retrieveInfo);
-    for(var i=0;i<40;i++){
-            $companyList.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
-            }
-
-
     var retrieveSelectedCompanyInfo = window.localStorage.getItem("prefCompanySelected");
     var parsedSelectedCompanyInfo = JSON.parse(retrieveSelectedCompanyInfo);
+
     for(var i=0;i<40;i++){
-        if(parsedSelectedCompanyInfo != undefined || parsedSelectedCompanyInfo.length != 0){
-            if(parsedSelectedCompanyInfo[i] === "true")
-            multiSelectOptionString += '<option value="'+(i+3)+'" selected="selected">'+parsedInfo[i]+'</option>';
-            else
-            multiSelectOptionString += '<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>';
-        }
-        else{
-            multiSelectOptionString += '<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>';
-        }
-    }
+            $companyList.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
+                    if(parsedSelectedCompanyInfo != undefined || parsedSelectedCompanyInfo.length != 0){
+                        if(parsedSelectedCompanyInfo[i] === "true")
+                        multiSelectOptionString += '<option value="'+(i+3)+'" selected="selected">'+parsedInfo[i]+'</option>';
+                        else
+                        multiSelectOptionString += '<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>';
+                    }
+                    else{
+                        multiSelectOptionString += '<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>';
+                    }
+            }
     $('#selectPrefCompany').empty().append(multiSelectOptionString).selectmenu();
     $('#selectPrefCompany').selectmenu('refresh');
     $('#selectPrefCompany').selectmenu('refresh', true);
