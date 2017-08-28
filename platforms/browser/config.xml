@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="Device">
+        <param name="browser-package" value="Device" />
+    </feature>
+    <name>stockMarketMonitor</name>
+    <description>
+        Stock Market Monitor Application. 
+                 Aplikacja służąca do podglądu aktualnych notowań giełdowych mWIG40:
+        -Notowania będą pobierane z internetu
+        -możliwość spersonalizowania aplikacji w zalezności od preferencji uzytkownika (wyswietlanie poszczególnych notowań)
+        -odświeżanie danych przy pomocy gestów (przekręcenie telefonu w bok)
+        -udostępnianie wykresów giełdowych dla wybranej spółki (Pobrane z serwisu internetowego)
+        -Wyszukiwanie notowań konkretnej spółki
+    </description>
+    <author email="dominik.platos@gmail.com.com" href="https://build.phonegap.com/apps/2763359/builds">
+        Dominik Platos and Aleksandra Stadnik
+    </author>
+    <icon density="mdpi" height="57" src="img/StockMarketAppIcon_PNG.png" width="57" />
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
+    <access origin="http://mybank.pl" />
+    <preference name="SplashScreen" value="img/logo.png" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenWidth" value="300" />
+    <preference name="SplashScreenHeight" value="300" />
+</widget>
