@@ -94,6 +94,11 @@ $companyList = $('#companyListSelect2');
     $('#selectPrefCompany').empty().append(multiSelectOptionString).selectmenu().selectmenu('refresh').selectmenu('refresh', true);
     document.querySelector("#checkMultiselectOptions").innerHTML =  multiSelectOptionString;
 }
+function refreshMultiSelect(){
+$('#selectPrefCompany').empty().append('<option value="added" selected="selected">Odswiezone</option>').selectmenu();
+$('#selectPrefCompany').selectmenu('refresh');
+$('#selectPrefCompany').selectmenu('refresh', true);
+}
 function getAllIndeces(){
     var allCompanyInfoStorage = new Array();
     for(var i=3;i<=42;i++){
