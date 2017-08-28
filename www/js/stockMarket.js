@@ -3,6 +3,7 @@ var htmlOfPage = "";
 var wig40IndexLocal = "";
 var $companyList = {};
 var $prefCompanySelect = {};
+var multiSelectOptionString = '<option>Wybierz elementy</option>';
 var url = "http://mybank.pl/gielda/indeks-mwig40.html";
 //Function responsible for refresh current stock index after movement of device (not working on browser
 function refreshMovement(acceleration) {
@@ -77,7 +78,7 @@ $companyList = $('#companyListSelect2');
             $companyList.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
             }
 
-    var multiSelectOptionString = '<option>Wybierz elementy</option>';
+
     var retrieveSelectedCompanyInfo = window.localStorage.getItem("prefCompanySelected");
     var parsedSelectedCompanyInfo = JSON.parse(retrieveSelectedCompanyInfo);
     for(var i=0;i<40;i++){
@@ -91,13 +92,16 @@ $companyList = $('#companyListSelect2');
             multiSelectOptionString += '<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>';
         }
     }
-    $('#selectPrefCompany').empty().append(multiSelectOptionString).selectmenu().selectmenu('refresh').selectmenu('refresh', true);
-    document.querySelector("#checkMultiselectOptions").innerHTML =  multiSelectOptionString;
+    $('#selectPrefCompany').empty().append(multiSelectOptionString).selectmenu();
+    $('#selectPrefCompany').selectmenu('refresh');
+    $('#selectPrefCompany').selectmenu('refresh', true);
+//    document.querySelector("#checkMultiselectOptions").innerHTML =  multiSelectOptionString;
 }
 function refreshMultiSelect(){
-$('#selectPrefCompany').empty().append('<option value="added" selected="selected">Odswiezone</option>').selectmenu();
+$('#selectPrefCompany').append(multiSelectOptionString).selectmenu();
 $('#selectPrefCompany').selectmenu('refresh');
 $('#selectPrefCompany').selectmenu('refresh', true);
+document.querySelector("#checkMultiselectOptions").innerHTML =  multiSelectOptionString;
 }
 function getAllIndeces(){
     var allCompanyInfoStorage = new Array();
