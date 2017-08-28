@@ -91,7 +91,7 @@ $companyList = $('#companyListSelect2');
             multiSelectOptionString += '<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>';
         }
     }
-    $('#selectPrefCompany').empty().append(multiSelectOptionString).selectmenu( {'refresh': true} );
+    $('#selectPrefCompany').empty().append(multiSelectOptionString).selectmenu().selectmenu('refresh').selectmenu('refresh', true);
     document.querySelector("#checkMultiselectOptions").innerHTML =  multiSelectOptionString;
 }
 function getAllIndeces(){
