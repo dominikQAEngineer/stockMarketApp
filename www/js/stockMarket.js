@@ -2,7 +2,6 @@ var options = { frequency: 300 };  // Update every 0.3 seconds
 var htmlOfPage = "";
 var wig40IndexLocal = "";
 var $companyList = {};
-var $prefCompanySelect = {};
 var multiSelectOptionString = '<option>Wybierz elementy</option>';
 var url = "http://mybank.pl/gielda/indeks-mwig40.html";
 //Function responsible for refresh current stock index after movement of device (not working on browser
@@ -24,14 +23,14 @@ function start(){
 
 function saveSelectedCompanyList(){
     var prefCompanyList = document.getElementById("selectPrefCompany");
-    for(var i=0; i < 40 ; i++){
     var prefCompanySelected = new Array();
+    for(var i=0; i < 41 ; i++){
         if(prefCompanyList.options[i].selected)
-            prefCompanySelected.push("true");
+            prefCompanySelected.push('true');
         else
-            prefCompanySelected.push("false");
+            prefCompanySelected.push('false');
     }
-
+    console.log(prefCompanySelected);
     window.localStorage.setItem("prefCompanySelected", JSON.stringify(prefCompanySelected));
 }
 
@@ -89,18 +88,17 @@ $companyList = $('#companyListSelect2');
                         multiSelectOptionString += '<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>';
                     }
             }
-//            console.log(multiSelectOptionString);
     $('#selectPrefCompany').empty().append(multiSelectOptionString);
     $('#selectPrefCompany').selectmenu('refresh');
     $('#selectPrefCompany').selectmenu('refresh', true);
 //    document.querySelector("#checkMultiselectOptions").innerHTML =  multiSelectOptionString;
 }
-function refreshMultiSelect(){
-console.log(multiSelectOptionString);
-$('#selectPrefCompany').append(multiSelectOptionString);
-$('#selectPrefCompany').selectmenu('refresh');
-$('#selectPrefCompany').selectmenu('refresh', true);
-document.querySelector("#checkMultiselectOptions").innerHTML =  multiSelectOptionString;
+function checkLocalStorage(){
+var retrieveSelectedCompanyInfo = window.localStorage.getItem("prefCompanySelected");
+var parsedSelectedCompanyInfo = JSON.parse(retrieveSelectedCompanyInfo);
+console.log(parsedSelectedCompanyInfo);
+
+//document.querySelector("#checkMultiselectOptionsLocalStorage").innerHTML =  multiSelectOptionString;
 }
 function getAllIndeces(){
     var allCompanyInfoStorage = new Array();
