@@ -79,6 +79,7 @@ $prefCompanySelect = $('#selectPrefCompany');
             }
 
     $prefCompanySelect.empty();
+    $prefCompanySelect.append('<option>Wybierz elementy</option>');
     var retrieveSelectedCompanyInfo = window.localStorage.getItem("prefCompanySelected");
     var parsedSelectedCompanyInfo = JSON.parse(retrieveSelectedCompanyInfo);
 
