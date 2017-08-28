@@ -24,7 +24,7 @@ function start(){
 
 function saveSelectedCompanyList(){
     var prefCompanyList = document.getElementById("selectPrefCompany");
-    for(var i=0; i < prefCompanyList.length ; i++){
+    for(var i=0; i < 40 ; i++){
     var prefCompanySelected = new Array();
         if(prefCompanyList.options[i].selected)
             prefCompanySelected.push("true");
@@ -79,7 +79,7 @@ $companyList = $('#companyListSelect2');
 
     for(var i=0;i<40;i++){
             $companyList.append('<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>');
-                    if(parsedSelectedCompanyInfo != undefined || parsedSelectedCompanyInfo.length != 0){
+                    if(parsedSelectedCompanyInfo != undefined || parsedSelectedCompanyInfo != null){
                         if(parsedSelectedCompanyInfo[i] === "true")
                         multiSelectOptionString += '<option value="'+(i+3)+'" selected="selected">'+parsedInfo[i]+'</option>';
                         else
@@ -89,13 +89,15 @@ $companyList = $('#companyListSelect2');
                         multiSelectOptionString += '<option value="'+(i+3)+'">'+parsedInfo[i]+'</option>';
                     }
             }
-    $('#selectPrefCompany').empty().append(multiSelectOptionString).selectmenu();
+//            console.log(multiSelectOptionString);
+    $('#selectPrefCompany').empty().append(multiSelectOptionString);
     $('#selectPrefCompany').selectmenu('refresh');
     $('#selectPrefCompany').selectmenu('refresh', true);
 //    document.querySelector("#checkMultiselectOptions").innerHTML =  multiSelectOptionString;
 }
 function refreshMultiSelect(){
-$('#selectPrefCompany').append(multiSelectOptionString).selectmenu();
+console.log(multiSelectOptionString);
+$('#selectPrefCompany').append(multiSelectOptionString);
 $('#selectPrefCompany').selectmenu('refresh');
 $('#selectPrefCompany').selectmenu('refresh', true);
 document.querySelector("#checkMultiselectOptions").innerHTML =  multiSelectOptionString;
