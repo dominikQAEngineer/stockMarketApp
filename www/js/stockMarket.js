@@ -1,14 +1,7 @@
 var options = { frequency: 300 };  // Update every 0.3 seconds
 var htmlOfPage = "";
-var wig40IndexLocal = "";
-var wig40percentChangeLocal = "";
-var wig40pointChangeLocal = "";
-var wig40prevClosureLocal = "";
-var wig40TodayOpeningLocal = "";
-var wig40DailyMinLocal = "";
-var wig40DailyMaxLocal = "";
-var wig40CurAssetsLocal = "";
-var wig40ImgSrcLocal = "";
+var wig40Local ={index: "", percentChange: "", pointChange: "", prevClosure: "", todayOpening: "", dailyMin: "", dailyMax: "", curAssets: "", imgSrc: "", measureTime: ""};
+
 var $companyList = {};
 var multiSelectOptionString = '';
 var url = "http://mybank.pl/gielda/indeks-mwig40.html";
@@ -19,8 +12,8 @@ function refreshMovement(acceleration) {
     if(acceleration.z<0 && deviceManufacturer!="unknown" && networkState != Connection.NONE)
         loadCompanyList();
     else if(networkState === Connection.NONE)
-    alert('There is no internet connection, connect to internet');
-
+    loadCompanyListWithoutInternet();
+    alert('There is no internet connection, data may be empty or out of date');
 }
 function onError() {
     alert('There is some kind of problem with accelerator!');
@@ -52,30 +45,7 @@ function onDeviceReady() {
     alert('There is no internet connection, after connect, click refresh button');
     }
 }
-function setWig40LocalStorage(){
-              window.localStorage.setItem("wig40IndexLocal", wig40IndexLocal);
-              window.localStorage.setItem("wig40percentChangeLocal", wig40percentChangeLocal);
-              window.localStorage.setItem("wig40pointChangeLocal", wig40pointChangeLocal);
-              window.localStorage.setItem("wig40prevClosureLocal", wig40prevClosureLocal);
-              window.localStorage.setItem("wig40TodayOpeningLocal", wig40TodayOpeningLocal);
-              window.localStorage.setItem("wig40DailyMinLocal", wig40DailyMinLocal);
-              window.localStorage.setItem("wig40DailyMaxLocal", wig40DailyMaxLocal);
-              window.localStorage.setItem("wig40CurAssetsLocal", wig40CurAssetsLocal);
-              window.localStorage.setItem("wig40ImgSrcLocal", wig40ImgSrcLocal);
-}
-function showWig40OnHtml(){
-document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
-document.querySelector("#percentChangeWig40").innerHTML =  window.localStorage.getItem("wig40percentChangeLocal");
-document.querySelector("#pointChangeWig40").innerHTML =  window.localStorage.getItem("wig40pointChangeLocal");
-document.querySelector("#prevClosureWig40").innerHTML =  window.localStorage.getItem("wig40prevClosureLocal");
-document.querySelector("#todayOpeningWig40").innerHTML =  window.localStorage.getItem("wig40TodayOpeningLocal");
-document.querySelector("#dailyMinWig40").innerHTML =  window.localStorage.getItem("wig40DailyMinLocal");
-document.querySelector("#dailyMaxWig40").innerHTML =  window.localStorage.getItem("wig40DailyMaxLocal");
-document.querySelector("#curAssetsWig40").innerHTML =  window.localStorage.getItem("wig40CurAssetsLocal");
-document.querySelector("img#ogolnyWykresWig40").src = window.localStorage.getItem("wig40ImgSrcLocal");
-}
-function loadCompanyList(){
-$companyList = $('#companyListSelect2');
+function getWig40InfoFromPage(){
     htmlOfPage =
     $.ajax({
                 async:false,
@@ -83,24 +53,61 @@ $companyList = $('#companyListSelect2');
                 url: url,
                 dataType: "html",
                 success: function (data) {
-                        wig40IndexLocal = $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
-                        wig40percentChangeLocal = $(data).find('.g_tab:nth-child(1) tr:nth-child(4) td span').text();
-                        wig40pointChangeLocal = $(data).find('.g_tab:nth-child(1) tr:nth-child(5) td span').text();
-                        wig40prevClosureLocal = $(data).find('.g_tab:nth-child(1) tr:nth-child(6) td:nth-child(2)').text();
-                        wig40TodayOpeningLocal = $(data).find('.g_tab:nth-child(1) tr:nth-child(7) td:nth-child(2)').text();
-                        wig40DailyMinLocal = $(data).find('.g_tab:nth-child(1) tr:nth-child(8) td:nth-child(2)').text();
-                        wig40DailyMaxLocal = $(data).find('.g_tab:nth-child(1) tr:nth-child(9) td:nth-child(2)').text();
-                        wig40CurAssetsLocal = $(data).find('.g_tab:nth-child(1) tr:nth-child(10) td:nth-child(2)').text();
-                        wig40ImgSrcLocal = $(data).find('#wykres_indeksu').attr('src');
+                        wig40Local.index = $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
+                        wig40Local.percentChange = $(data).find('.g_tab:nth-child(1) tr:nth-child(4) td span').text();
+                        wig40Local.pointChange = $(data).find('.g_tab:nth-child(1) tr:nth-child(5) td span').text();
+                        wig40Local.prevClosure = $(data).find('.g_tab:nth-child(1) tr:nth-child(6) td:nth-child(2)').text();
+                        wig40Local.todayOpening = $(data).find('.g_tab:nth-child(1) tr:nth-child(7) td:nth-child(2)').text();
+                        wig40Local.dailyMin = $(data).find('.g_tab:nth-child(1) tr:nth-child(8) td:nth-child(2)').text();
+                        wig40Local.dailyMax = $(data).find('.g_tab:nth-child(1) tr:nth-child(9) td:nth-child(2)').text();
+                        wig40Local.curAssets = $(data).find('.g_tab:nth-child(1) tr:nth-child(10) td:nth-child(2)').text();
+                        wig40Local.imgSrc = $(data).find('#wykres_indeksu').attr('src');
               }
               }).responseText;
-              setWig40LocalStorage();
-              showWig40OnHtml();
+}
+function setWig40LocalStorage(){
+    window.localStorage.setItem("wig40IndexLocal", wig40Local.index);
+    window.localStorage.setItem("wig40percentChangeLocal", wig40Local.percentChange);
+    window.localStorage.setItem("wig40pointChangeLocal", wig40Local.pointChange);
+    window.localStorage.setItem("wig40prevClosureLocal", wig40Local.prevClosure);
+    window.localStorage.setItem("wig40TodayOpeningLocal", wig40Local.todayOpening);
+    window.localStorage.setItem("wig40DailyMinLocal", wig40Local.dailyMin);
+    window.localStorage.setItem("wig40DailyMaxLocal", wig40Local.dailyMax);
+    window.localStorage.setItem("wig40CurAssetsLocal", wig40Local.curAssets);
+    window.localStorage.setItem("wig40ImgSrcLocal", wig40Local.imgSrc);
+}
+function showWig40OnHtml(){
+    document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
+    document.querySelector("#percentChangeWig40").innerHTML =  window.localStorage.getItem("wig40percentChangeLocal");
+    document.querySelector("#pointChangeWig40").innerHTML =  window.localStorage.getItem("wig40pointChangeLocal");
+    document.querySelector("#prevClosureWig40").innerHTML =  window.localStorage.getItem("wig40prevClosureLocal");
+    document.querySelector("#todayOpeningWig40").innerHTML =  window.localStorage.getItem("wig40TodayOpeningLocal");
+    document.querySelector("#dailyMinWig40").innerHTML =  window.localStorage.getItem("wig40DailyMinLocal");
+    document.querySelector("#dailyMaxWig40").innerHTML =  window.localStorage.getItem("wig40DailyMaxLocal");
+    document.querySelector("#curAssetsWig40").innerHTML =  window.localStorage.getItem("wig40CurAssetsLocal");
+    document.querySelector("img#ogolnyWykresWig40").src = window.localStorage.getItem("wig40ImgSrcLocal");
+}
+function getCompanyListFromPage{
 
+}
 
-              $companyList.empty();
-              $companyList.append('<option value="-1">Wybierz spolke</option>');
-              htmlOfPage=$(htmlOfPage).find(".g_tab:nth-of-type(3)")
+function loadCompanyListWithoutInternet(){
+
+}
+//DOKONCZYC REFACTOR
+//NAPISAC FUNKCJE DO POBIERANIA LISTY FIRM Z INTERNETU (Rozdzielenie ajaxa, tablicy i pamieci lokalnej)
+//NAPISAC FUNKCJE DO USTAWIANIA DANYCH BEZ INTERNETU
+//Ogarnac ewentualne callbacki
+
+function loadCompanyList(){
+    getWig40InfoFromPage();
+    setWig40LocalStorage();
+    showWig40OnHtml();
+
+    $companyList = $('#companyListSelect2');
+    $companyList.empty();
+    $companyList.append('<option value="-1">Wybierz spolke</option>');
+    htmlOfPage=$(htmlOfPage).find(".g_tab:nth-of-type(3)")
     var listOfCompanyStorage = new Array();
     for(var i=3;i<=42;i++){
                 listOfCompanyStorage.push($(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(1) b").text());
