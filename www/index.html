@@ -26,8 +26,12 @@
         </div>
 
         <div data-role="popup" id="myPopup" data-position-to="window" data-overlay-theme="b">
-            <p>This is a simple popup.</p>
-        </div>
+                <div data-role="header">
+                        <h1>Informacje</h1>
+                    </div>
+                    <p>StockMarketApp to aplikacja umożliwiająca śledzenie notowań giełdowych dla mWIG40.</p><br>
+                    <p>Wykonana przez A.Stadnik i D.Płatosa.</p>
+            </div>
         <div data-role="header" data-position="fixed">
             <a href="#myPanel" class="ui-btn ui-btn-inline  ui-corner-all ui-icon-bars ui-btn-icon-left">Menu</a>
             <h1>Wybrane spółki:</h1>
@@ -42,10 +46,16 @@
                             data-theme="b"></select>
                     </form>
                 </div>
-                <div data-role="controlgroup" data-type="horizontal">
-                <input type="button" id="clearSelectedPreferences" value="Wyczyść wybrane spółki" class="ui-mini ui-corner-all" onclick="clearAllSelectedCompany()" />
-                <input type="button" id="saveSelectedPreferences" value="Zapisz wybrane spółki" onclick="saveSelectedCompanyList()"/>
-                <input type="button" id="getDataForSelectedCompany" value="Pobierz dane dla wybranych spółek" onclick="getDataForSelectedCompany()"/>
+                <div class="ui-grid-b">
+                    <div class="ui-block-a">
+                        <input type="button" id="clearSelectedPreferences" value="Wyczyść wybrane spółki" class="ui-corner-all ui-icon-forbidden ui-btn-icon-left" onclick="clearAllSelectedCompany()" />
+                     </div>
+                     <div class="ui-block-b">
+                        <input type="button" id="saveSelectedPreferences" value="Zapisz wybrane spółki" class="ui-corner-all ui-icon-edit ui-btn-icon-left" onclick="saveSelectedCompanyList()"/>
+                    </div>
+                    <div class="ui-block-c">
+                        <input type="button" id="getDataForSelectedCompany" value="Pobierz dane dla wybranych spółek" class=" ui-corner-all ui-icon-arrow-d ui-btn-icon-left" onclick="getDataForSelectedCompany()"/>
+                    </div>
                 </div>
                     <div id="basicInfoForSelected"></div>
             </div>
@@ -69,8 +79,13 @@
         </div>
 
         <div data-role="popup" id="myPopup1" data-position-to="window" data-overlay-theme="b">
-            <p>This is a simple popup.</p>
-        </div>
+                <div data-role="header">
+                        <h1>Informacje</h1>
+                    </div>
+                    <p>StockMarketApp to aplikacja umożliwiająca śledzenie notowań giełdowych dla mWIG40.</p><br>
+                    <p>Wykonana przez A.Stadnik i D.Płatosa.</p>
+            </div>
+
         <div data-role="header" data-position="fixed">
             <a href="#myPanel1" class="ui-btn ui-btn-inline  ui-corner-all ui-icon-bars ui-btn-icon-left">Menu</a>
 
@@ -114,7 +129,11 @@
         </div>
 
         <div data-role="popup" id="myPopup2" data-position-to="window" data-overlay-theme="b">
-            <p>This is a simple popup.</p>
+                <div data-role="header">
+                    <h1>Informacje</h1>
+                </div>
+                <p>StockMarketApp to aplikacja umożliwiająca śledzenie notowań giełdowych dla mWIG40.</p><br>
+                <p>Wykonana przez A.Stadnik i D.Płatosa.</p>
         </div>
 
         <div data-role="header" data-position="fixed">
