@@ -12,95 +12,32 @@
         <title>stockMarketApp</title>
     </head>
 
-    <!-- DROPDOWN STYLE -->
-    <style>
-        .dropbtn {
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-/* .dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
-} */
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #21272d;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown a:hover {background-color: #21272d}
-.show {display:block;}
-</style>
-
-<!-- DROPDOWN -->
-<script>
-        /* When the user clicks on the button,
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function(event) {
-          if (!event.target.matches('.dropbtn')) {
-
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-              var openDropdown = dropdowns[i];
-              if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-              }
-            }
-          }
-        }
-        </script>
-
     <body style="margin: 0px;" bgcolor="#21272d" onload="start(); ">
         <!-- STRONA z PERSONALIZACJA -->
            
-    <div data-role="page" id="mainPage3" class="ui-body-b">
+    <div data-role="page" id="mainPage3" class="ui-body-b" data-theme="b">
+            <div data-role="panel" id="myPanel">
+                    <h2>Menu</h2>
+                    <p>Some text..</p>
+                     </div>
+
         <div data-role="header">
-            <div class="dropdown">
-                <button onclick="myFunction()" class="dropbtn">Menu</button>
-                <div id="myDropdown" class="dropdown-content" >
-                    <a href="#">O aplikacji</a>
-                    <a href="#">Zamknij</a>
-                </div>
-            </div>
+                <a href="#myPanel" class="ui-btn ui-btn-inline">Menu</a>
             <h1>Wybrane spółki:</h1>
         </div>
         <div data-role="main" class="ui-content" >
 
             <div class="ui-grid-solo" >
                 <label>Wybierz obserwowane spółki</label>
-                <div class="ui-field-contain">
+                <div class="ui-field-contain" data-theme="b">
                     <form>
-                        <select name="select-custom-19" id="selectPrefCompany" multiple="multiple" data-native-menu="false"></select>
+                        <select name="select-custom-19" id="selectPrefCompany" multiple="multiple" data-native-menu="false" data-theme="b"></select>
                     </form>
                 </div>
                 <input type="button" id="saveSelectedPreferences" value="Zapisz wybrane spółki" onclick="saveSelectedCompanyList()"/>
             </div>
         </div>
-        <div data-role="footer" style="text-align:center;">
+        <div data-role="footer" style="text-align:center;"  data-position="fixed" class="ui-footer-fixed">
                 <a href="#mainPage2" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide" data-direction="reverse">Poprzednia strona</a>
                 <a href="#mainPage" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide" >Następna strona</a>
                 
@@ -110,11 +47,11 @@
     </div>
  <!-- STRONA index wszystkich spolek -->
 
-        <div data-role="page" id="mainPage" class="ui-body-b">
+        <div data-role="page" id="mainPage" class="ui-body-b" data-theme="b">
         <div data-role="header">
         <h1>Ogólne informacje mWIG40</h1>
         </div>
-        <div data-role="main" class="ui-content" >
+        <div data-role="main" class="ui-content" data-theme="b" >
         <div class="ui-grid-solo" >
                 <div class="stockInformation">
                     <label>Kurs bieżący WIG40: <a id="wig40StockIndex"></a> </label>
@@ -130,7 +67,7 @@
         </div>
      
         </div>
-        <div data-role="footer" style="text-align:center;">
+        <div data-role="footer" style="text-align:center;"  data-position="fixed" class="ui-footer-fixed">
                 <a href="#mainPage3" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide" data-direction="reverse">Poprzednia strona</a>
                 <a href="#mainPage2" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide" >Następna strona</a>
                 
@@ -141,7 +78,7 @@
 
     <!--STRONA z info o wybranej spolce-->
 
-        <div data-role="page" id="mainPage2" class="ui-body-b">
+        <div data-role="page" id="mainPage2" class="ui-body-b" data-theme="b">
             <div data-role="header">
                 <h1>Informacje o wybranej spółce</h1>
             </div>
@@ -169,7 +106,7 @@
                     </div>
                 </div>              
             </div>
-            <div data-role="footer" style="text-align:center;">
+            <div data-role="footer" style="text-align:center;" data-position="fixed" class="ui-footer-fixed">
                     <a href="#mainPage" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide" data-direction="reverse">Poprzednia strona</a>
                     <a href="#mainPage3" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide" >Następna strona</a>
                     
