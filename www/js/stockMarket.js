@@ -126,6 +126,10 @@ function showListOfCompanyOnPage(){
         $('#selectPrefCompany').selectmenu();
         $('#selectPrefCompany').selectmenu('refresh');
         $('#selectPrefCompany').selectmenu('refresh', true);
+
+        $('#companyListSelect2').selectmenu();
+        $('#companyListSelect2').selectmenu('refresh');
+        $('#companyListSelect2').selectmenu('refresh', true);
 }
 
 function loadCompanyListWithoutInternet(){
