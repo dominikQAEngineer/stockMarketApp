@@ -215,3 +215,7 @@ function clearAllSelectedCompany(){
         alert("FAILED: did not unselect all #multiselect options");
     }
 }
+
+function exitApp(){
+    navigator.app.exitApp();
+}
