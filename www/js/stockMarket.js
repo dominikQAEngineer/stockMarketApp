@@ -23,20 +23,6 @@ function onError() {
 function start(){
     document.addEventListener("deviceready",onDeviceReady, false);
 }
-
-function saveSelectedCompanyList(){
-    var prefCompanyList = document.getElementById("selectPrefCompany");
-    var prefCompanySelected = new Array();
-    for(var i=0; i < 41 ; i++){
-        if(prefCompanyList.options[i].selected)
-            prefCompanySelected.push('true');
-        else
-            prefCompanySelected.push('false');
-    }
-    console.log(prefCompanySelected);
-    window.localStorage.setItem("prefCompanySelected", JSON.stringify(prefCompanySelected));
-}
-
 function onDeviceReady() {
     var networkState = navigator.connection.type;
     if(networkState != Connection.NONE){
@@ -49,8 +35,19 @@ function onDeviceReady() {
         alert('Dane zostały załadowane bez połączenia internetowego, ze zmiennych lokalnych - mogą być nieaktualne');
     }
 }
+function saveSelectedCompanyList(){
+    var prefCompanyList = document.getElementById("selectPrefCompany");
+    var prefCompanySelected = new Array();
+    for(var i=0; i < 41 ; i++){
+        if(prefCompanyList.options[i].selected)
+            prefCompanySelected.push('true');
+        else
+            prefCompanySelected.push('false');
+    }
+    console.log(prefCompanySelected);
+    window.localStorage.setItem("prefCompanySelected", JSON.stringify(prefCompanySelected));
+}
 function getWig40InfoFromPage(){
-    htmlOfPage =
     $.ajax({
                 async:false,
                 type: "GET",
@@ -141,22 +138,58 @@ function loadCompanyList(){
     getCompanyListFromPage();
     showListOfCompanyOnPage();
 }
-function getAllIndeces(){
-    var allCompanyInfoStorage = new Array();
-    for(var i=3;i<=42;i++){
-        // new object every time, Calling push will not copy your object, because JavaScript Objects are passed by reference: you're pushing the same Object as every array entry.
-        var company ={companyName: "", measureTime: "", curIndex: "", prevIndex: "", percentChange: "", pointChange: "", curAssets: ""};
-            company.companyName=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(1) b").text()
-            company.measureTime=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(2)").text()
-            company.curIndex=     $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(3) b").text()
-            company.prevIndex=    $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(4)").text()
-            company.percentChange=$(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(5)").text()
-            company.pointChange=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(6)").text()
-            company.curAssets=    $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(7)").text()
-            allCompanyInfoStorage.push(company);
+function getDataForSelectedCompany(){
+    var networkState = navigator.connection.type;
+    if(networkState != Connection.NONE){
+    var insertDiv = document.getElementById('basicInfoForSelected');
+    while (insertDiv.firstChild) {
+        insertDiv.removeChild(insertDiv.firstChild);
     }
-    window.localStorage.setItem("allCompanyInfoStorage", JSON.stringify(allCompanyInfoStorage));
+    $.ajax({
+                        async:false,
+                        type: "GET",
+                        url: url,
+                        dataType: "html",
+                        success: function (data) {
+                               listOfCompanyAjax = $(data).find(".g_tab:nth-of-type(3)");
+                               $('#selectPrefCompany :selected').each(function(){
+                                           var p = document.createElement('p');
+                                           p.appendChild(document.createTextNode('Nazwa spółki: '+$(this).text()));
+                                           p.appendChild(document.createElement('br'));
+                                           p.appendChild(document.createTextNode('Obecna wartość: '+$(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(3) b").text()));
+                                           p.appendChild(document.createElement('br'));
+                                           p.appendChild(document.createTextNode('Poprzednia wartość: '+$(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(4)").text()));
+                                           p.appendChild(document.createElement('br'));
+                                           p.appendChild(document.createTextNode('Zmiana procentowa: '+$(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(5)").text()));
+                                           p.appendChild(document.createElement('br'));
+                                           p.appendChild(document.createTextNode('Obrót [PLN]: '+$(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(7)").text()));
+                                           p.appendChild(document.createElement('br'));
+                                           insertDiv.appendChild(p);
+                                       });
+                      }
+                      }).responseText;
+
+    }
+    else{
+
+    }
 }
+//function getAllIndeces(){
+//    var allCompanyInfoStorage = new Array();
+//    for(var i=3;i<=42;i++){
+//        // new object every time, Calling push will not copy your object, because JavaScript Objects are passed by reference: you're pushing the same Object as every array entry.
+//        var company ={companyName: "", measureTime: "", curIndex: "", prevIndex: "", percentChange: "", pointChange: "", curAssets: ""};
+//            company.companyName=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(1) b").text()
+//            company.measureTime=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(2)").text()
+//            company.curIndex=     $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(3) b").text()
+//            company.prevIndex=    $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(4)").text()
+//            company.percentChange=$(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(5)").text()
+//            company.pointChange=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(6)").text()
+//            company.curAssets=    $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(7)").text()
+//            allCompanyInfoStorage.push(company);
+//    }
+//    window.localStorage.setItem("allCompanyInfoStorage", JSON.stringify(allCompanyInfoStorage));
+//}
 function getSelectedCompanyInformation(){
     if( $("#companyListSelect2 option:selected").val()!=-1){
         document.querySelector(".selectedCompanyIndexInfo2 a#currentIndexValue2").innerHTML =
