@@ -8,11 +8,13 @@ var url = "http://mybank.pl/gielda/indeks-mwig40.html";
 function refreshMovement(acceleration) {
     var deviceManufacturer  = device.manufacturer;
     var networkState = navigator.connection.type;
-    if(acceleration.z<0 && deviceManufacturer!="unknown" && networkState != Connection.NONE)
-        loadCompanyList();
-    else if(networkState === Connection.NONE){
+    if(acceleration.z<0 && deviceManufacturer!="unknown" && networkState != Connection.NONE){
+    loadCompanyList();
+    alert('Odświeżono dane z dostępem do internetu, wszystko aktualne');
+    }
+    else if(acceleration.z<0 && deviceManufacturer!="unknown" && networkState === Connection.NONE){
     loadCompanyListWithoutInternet();
-    alert('There is no internet connection, data may be empty or out of date');
+    alert('Odświeżono dane bez dostępu do internetu, dane są załadowane ze zmiennych lokalnych');
     }
 }
 function onError() {
