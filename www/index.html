@@ -13,14 +13,20 @@
     </head>
 
     <body style="margin: 0px;" bgcolor="#21272d" onload="start(); ">
+        
         <!-- STRONA z PERSONALIZACJA -->
            
     <div data-role="page" id="mainPage3" class="ui-body-b" data-theme="b">
-            <div data-role="panel" id="myPanel">
+            <div data-role="panel" id="myPanel" data-position-fixed="true">
                     <h2>Menu</h2>
-                    <p>Some text..</p>
+                    <a href="#demo-links" class="ui-shadow ui-btn ui-btn-b"  >Odśwież</a> 
+                    <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-b" >O aplikacji</a>
+                    <a href="#demo-links" class="ui-btn ui-btn-b"  href="#demo-links">Zamknij</a>
                      </div>
 
+                     <div data-role="popup" id="myPopup" data-position-to="window"  data-overlay-theme="b">
+                            <p>This is a simple popup.</p>
+                          </div>
         <div data-role="header">
                 <a href="#myPanel" class="ui-btn ui-btn-inline">Menu</a>
             <h1>Wybrane spółki:</h1>
@@ -48,7 +54,19 @@
  <!-- STRONA index wszystkich spolek -->
 
         <div data-role="page" id="mainPage" class="ui-body-b" data-theme="b">
+                <div data-role="panel" id="myPanel1" data-position-fixed="true">
+                        <h2>Menu</h2>
+                        <a href="#demo-links" class="ui-shadow ui-btn ui-btn-b"  >Odśwież</a> 
+                        <a href="#myPopup1" data-rel="popup" class="ui-btn ui-btn-b" >O aplikacji</a>                       
+                     <a href="#demo-links" class="ui-btn ui-btn-b"  href="#demo-links">Zamknij</a>
+                         </div>
+
+                         <div data-role="popup" id="myPopup1" data-position-to="window"  data-overlay-theme="b">
+                                <p>This is a simple popup.</p>
+                              </div>
         <div data-role="header">
+                <a href="#myPanel1" class="ui-btn ui-btn-inline">Menu</a>
+                
         <h1>Ogólne informacje mWIG40</h1>
         </div>
         <div data-role="main" class="ui-content" data-theme="b" >
@@ -79,7 +97,20 @@
     <!--STRONA z info o wybranej spolce-->
 
         <div data-role="page" id="mainPage2" class="ui-body-b" data-theme="b">
+                <div data-role="panel" id="myPanel2" data-position-fixed="true">
+                        <h2>Menu</h2>
+                        <a href="#demo-links" class="ui-shadow ui-btn ui-btn-b"  >Odśwież</a> 
+                        <a href="#myPopup2" data-rel="popup" class="ui-btn ui-btn-b" >O aplikacji</a>
+                        <a href="#demo-links" class="ui-btn ui-btn-b"  href="#demo-links">Zamknij</a>
+                         </div>
+                         
+                         <div data-role="popup" id="myPopup2" data-position-to="window"  data-overlay-theme="b">
+                                <p>This is a simple popup.</p>
+                              </div>
+
             <div data-role="header">
+                    <a href="#myPanel2" class="ui-btn ui-btn-inline">Menu</a>
+                    
                 <h1>Informacje o wybranej spółce</h1>
             </div>
             <div data-role="main" class="ui-content" >
