@@ -1,76 +1,79 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <meta http-equiv="Content-Security-Policy" content="*">
-        <script src="js/stockMarket.js"></script>
-        <script src="cordova.js"></script>
-        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
-        <script src="js/jquery-2.1.4.min.js"></script>
-        <script src="js/jquery.mobile-1.4.5.min.js"></script>
-        <title>stockMarketApp</title>
-    </head>
 
-    <body style="margin: 0px;" bgcolor="#21272d" onload="start(); ">
-        
-        <!-- STRONA z PERSONALIZACJA -->
-           
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="*">
+    <script src="js/stockMarket.js"></script>
+    <script src="cordova.js"></script>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <title>stockMarketApp</title>
+</head>
+
+<body style="margin: 0px;" bgcolor="#21272d" onload="start(); ">
+
+    <!-- STRONA z PERSONALIZACJA -->
+
     <div data-role="page" id="mainPage3" class="ui-body-b" data-theme="b">
-            <div data-role="panel" id="myPanel" data-position-fixed="true">
-                    <h2>Menu</h2>
-                    <a href="#demo-links" class="ui-shadow ui-btn ui-btn-b"  >Odśwież</a> 
-                    <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-b" >O aplikacji</a>
-                    <a href="#demo-links" class="ui-btn ui-btn-b"  href="#demo-links">Zamknij</a>
-                     </div>
+        <div data-role="panel" id="myPanel" data-position-fixed="true">
+            <h2>Menu</h2>
+            <a href="#demo-links" class="ui-shadow ui-btn ui-btn-b">Odśwież</a>
+            <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-b">O aplikacji</a>
+            <a href="#demo-links" class="ui-btn ui-btn-b" href="#demo-links">Zamknij</a>
+        </div>
 
-                     <div data-role="popup" id="myPopup" data-position-to="window"  data-overlay-theme="b">
-                            <p>This is a simple popup.</p>
-                          </div>
-        <div data-role="header">
-                <a href="#myPanel" class="ui-btn ui-btn-inline">Menu</a>
+        <div data-role="popup" id="myPopup" data-position-to="window" data-overlay-theme="b">
+            <p>This is a simple popup.</p>
+        </div>
+        <div data-role="header" data-position="fixed">
+            <a href="#myPanel" class="ui-btn ui-btn-inline">Menu</a>
             <h1>Wybrane spółki:</h1>
         </div>
-        <div data-role="main" class="ui-content" >
+        <div data-role="main" class="ui-content">
 
-            <div class="ui-grid-solo" >
+            <div class="ui-grid-solo">
                 <label>Wybierz obserwowane spółki</label>
                 <div class="ui-field-contain" data-theme="b">
                     <form>
-                        <select name="select-custom-19" id="selectPrefCompany" multiple="multiple" data-native-menu="false" data-theme="b"></select>
+                        <select name="select-custom-19" id="selectPrefCompany" multiple="multiple" data-native-menu="false"
+                            data-theme="b"></select>
                     </form>
                 </div>
-                <input type="button" id="saveSelectedPreferences" value="Zapisz wybrane spółki" onclick="saveSelectedCompanyList()"/>
+                <input type="button" id="saveSelectedPreferences" value="Zapisz wybrane spółki" onclick="saveSelectedCompanyList()" />
             </div>
         </div>
-        <div data-role="footer" style="text-align:center;"  data-position="fixed" class="ui-footer-fixed">
-                <a href="#mainPage2" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide" data-direction="reverse">Poprzednia strona</a>
-                <a href="#mainPage" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide" >Następna strona</a>
-                
-                <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageSelectedCompany"></a></label>
-                <label>Czas ostatniego odświeżenia:<a id="lastRefreshSelectedCompany"></a></label>
+        <div data-role="footer" style="text-align:center;" data-position="fixed" class="ui-footer-fixed">
+            <a href="#mainPage2" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide"
+                data-direction="reverse">Poprzednia strona</a>
+            <a href="#mainPage" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide">Następna strona</a>
+
+            <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageSelectedCompany"></a></label>
+            <label>Czas ostatniego odświeżenia:<a id="lastRefreshSelectedCompany"></a></label>
         </div>
     </div>
- <!-- STRONA index wszystkich spolek -->
+    <!-- STRONA index wszystkich spolek -->
 
-        <div data-role="page" id="mainPage" class="ui-body-b" data-theme="b">
-                <div data-role="panel" id="myPanel1" data-position-fixed="true">
-                        <h2>Menu</h2>
-                        <a href="#demo-links" class="ui-shadow ui-btn ui-btn-b"  >Odśwież</a> 
-                        <a href="#myPopup1" data-rel="popup" class="ui-btn ui-btn-b" >O aplikacji</a>                       
-                     <a href="#demo-links" class="ui-btn ui-btn-b"  href="#demo-links">Zamknij</a>
-                         </div>
-
-                         <div data-role="popup" id="myPopup1" data-position-to="window"  data-overlay-theme="b">
-                                <p>This is a simple popup.</p>
-                              </div>
-        <div data-role="header">
-                <a href="#myPanel1" class="ui-btn ui-btn-inline">Menu</a>
-                
-        <h1>Ogólne informacje mWIG40</h1>
+    <div data-role="page" id="mainPage" class="ui-body-b" data-theme="b">
+        <div data-role="panel" id="myPanel1" data-position-fixed="true">
+            <h2>Menu</h2>
+            <a href="#demo-links" class="ui-shadow ui-btn ui-btn-b">Odśwież</a>
+            <a href="#myPopup1" data-rel="popup" class="ui-btn ui-btn-b">O aplikacji</a>
+            <a href="#demo-links" class="ui-btn ui-btn-b" href="#demo-links">Zamknij</a>
         </div>
-        <div data-role="main" class="ui-content" data-theme="b" >
-        <div class="ui-grid-solo" >
+
+        <div data-role="popup" id="myPopup1" data-position-to="window" data-overlay-theme="b">
+            <p>This is a simple popup.</p>
+        </div>
+        <div data-role="header" data-position="fixed">
+            <a href="#myPanel1" class="ui-btn ui-btn-inline">Menu</a>
+
+            <h1>Ogólne informacje mWIG40</h1>
+        </div>
+        <div data-role="main" class="ui-content" data-theme="b">
+            <div class="ui-grid-solo">
                 <div class="stockInformation">
                     <label>Kurs bieżący WIG40: <a id="wig40StockIndex"></a> </label>
                     <label>Zmiana [%]: <a id="percentChangeWig40"></a></label>
@@ -80,73 +83,77 @@
                     <label>Dzienne min: <a id="dailyMinWig40"></a></label>
                     <label>Dzienne max: <a id="dailyMaxWig40"></a></label>
                     <label>Obrót[PLN]: <a id="curAssetsWig40"></a></label>
-                    <img id="ogolnyWykresWig40" src="" alt="[wykres mWIG40]" data-rel="external" style='height: 100%; width: 100%; max-width: 600px;object-fit: contain'/>
+                    <img id="ogolnyWykresWig40" src="" alt="[wykres mWIG40]" data-rel="external" style='height: 100%; width: 100%; max-width: 600px;object-fit: contain'
+                    />
                 </div>
+            </div>
+
         </div>
-     
+        <div data-role="footer" style="text-align:center;" data-position="fixed" class="ui-footer-fixed">
+            <a href="#mainPage3" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide"
+                data-direction="reverse">Poprzednia strona</a>
+            <a href="#mainPage2" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide">Następna strona</a>
+
+            <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageWig40"></a></label>
+            <label>Czas ostatniego odświeżenia:<a id="lastRefreshTimeWig40"></a></label>
         </div>
-        <div data-role="footer" style="text-align:center;"  data-position="fixed" class="ui-footer-fixed">
-                <a href="#mainPage3" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide" data-direction="reverse">Poprzednia strona</a>
-                <a href="#mainPage2" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide" >Następna strona</a>
-                
-                <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageWig40"></a></label>
-                <label>Czas ostatniego odświeżenia:<a id="lastRefreshTimeWig40"></a></label>
-              </div>
-        </div>
+    </div>
 
     <!--STRONA z info o wybranej spolce-->
 
-        <div data-role="page" id="mainPage2" class="ui-body-b" data-theme="b">
-                <div data-role="panel" id="myPanel2" data-position-fixed="true">
-                        <h2>Menu</h2>
-                        <a href="#demo-links" class="ui-shadow ui-btn ui-btn-b"  >Odśwież</a> 
-                        <a href="#myPopup2" data-rel="popup" class="ui-btn ui-btn-b" >O aplikacji</a>
-                        <a href="#demo-links" class="ui-btn ui-btn-b"  href="#demo-links">Zamknij</a>
-                         </div>
-                         
-                         <div data-role="popup" id="myPopup2" data-position-to="window"  data-overlay-theme="b">
-                                <p>This is a simple popup.</p>
-                              </div>
-
-            <div data-role="header">
-                    <a href="#myPanel2" class="ui-btn ui-btn-inline">Menu</a>
-                    
-                <h1>Informacje o wybranej spółce</h1>
-            </div>
-            <div data-role="main" class="ui-content" >
-                <div class="ui-grid-solo" >
-                   
-                    <form>
-                        <div class="wig40CompanyList">
-                            <label>Lista spółek:</label>
-                            <select name="select-choice-a" id="companyListSelect2">
-                                <option value="-1">Wybierz spółkę</option>
-                            </select>
-                        </div>
-                    </form>
-                    <div class="selectedCompanyIndexInfo2">
-                        <input type="button" id="getSelectedCompanyIndex2" value="Pobierz informacje o wybranej spółce" onclick="getSelectedCompanyInformation()"/>
-                        <label>Indeks wybranej spolki: <a id="currentIndexValue2"></a></label>
-                        <label>Zmiana [%]: <a id="percentChangeForCompany"></a> </label>
-                        <label>Zmiana [pkt]: <a id="pointChangeForCompany"></a></label>
-                        <label>Obrót[PLN]: <a id="curAssetsForCompany"></a></label>
-                        <label>Dzienne min: <a id="dailyMinForCompany"></a></label>
-                        <label>Dzienne max: <a id="dailyMaxForCompany"></a>  </label>
-                        <label>Wykres giełdowy wybranej spółki:</label>
-                        <img id="wykresWybranejSpolki" src="" alt="[tu pojawi sie wykres]" data-rel="external" style='height: 100%; width: 100%; max-width: 600px;object-fit: contain'/>
-                    </div>
-                </div>              
-            </div>
-            <div data-role="footer" style="text-align:center;" data-position="fixed" class="ui-footer-fixed">
-                    <a href="#mainPage" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide" data-direction="reverse">Poprzednia strona</a>
-                    <a href="#mainPage3" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide" >Następna strona</a>
-                    
-                    <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageAllCompany"></a></label>
-                    <label>Czas ostatniego odświeżenia:<a id="lastRefreshAllCompany"></a></label>
-                  </div>
+    <div data-role="page" id="mainPage2" class="ui-body-b" data-theme="b">
+        <div data-role="panel" id="myPanel2" data-position-fixed="true">
+            <h2>Menu</h2>
+            <a href="#demo-links" class="ui-shadow ui-btn ui-btn-b">Odśwież</a>
+            <a href="#myPopup2" data-rel="popup" class="ui-btn ui-btn-b">O aplikacji</a>
+            <a href="#demo-links" class="ui-btn ui-btn-b" href="#demo-links">Zamknij</a>
         </div>
 
-        
+        <div data-role="popup" id="myPopup2" data-position-to="window" data-overlay-theme="b">
+            <p>This is a simple popup.</p>
+        </div>
 
-    </body>
+        <div data-role="header" data-position="fixed">
+            <a href="#myPanel2" class="ui-btn ui-btn-inline">Menu</a>
+
+            <h1>Informacje o wybranej spółce</h1>
+        </div>
+        <div data-role="main" class="ui-content">
+            <div class="ui-grid-solo">
+
+                <form>
+                    <div class="wig40CompanyList">
+                        <label>Lista spółek:</label>
+                        <select name="select-choice-a" id="companyListSelect2">
+                                <option value="-1">Wybierz spółkę</option>
+                            </select>
+                    </div>
+                </form>
+                <div class="selectedCompanyIndexInfo2">
+                    <input type="button" id="getSelectedCompanyIndex2" value="Pobierz informacje o wybranej spółce" onclick="getSelectedCompanyInformation()"
+                    />
+                    <label>Indeks wybranej spolki: <a id="currentIndexValue2"></a></label>
+                    <label>Zmiana [%]: <a id="percentChangeForCompany"></a> </label>
+                    <label>Zmiana [pkt]: <a id="pointChangeForCompany"></a></label>
+                    <label>Obrót[PLN]: <a id="curAssetsForCompany"></a></label>
+                    <label>Dzienne min: <a id="dailyMinForCompany"></a></label>
+                    <label>Dzienne max: <a id="dailyMaxForCompany"></a>  </label>
+                    <label>Wykres giełdowy wybranej spółki:</label>
+                    <img id="wykresWybranejSpolki" src="" alt="[tu pojawi sie wykres]" data-rel="external" style='height: 100%; width: 100%; max-width: 600px;object-fit: contain'
+                    />
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" style="text-align:center;" data-position="fixed" class="ui-footer-fixed">
+            <a href="#mainPage" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide"
+                data-direction="reverse">Poprzednia strona</a>
+            <a href="#mainPage3" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide">Następna strona</a>
+
+            <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageAllCompany"></a></label>
+            <label>Czas ostatniego odświeżenia:<a id="lastRefreshAllCompany"></a></label>
+        </div>
+    </div>
+
+</body>
+
 </html>
