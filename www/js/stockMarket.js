@@ -208,3 +208,10 @@ function getSelectedCompanyInformation(){
                       }).responseText;
     }
 }
+
+function clearAllSelectedCompany(){
+    $("#selectPrefCompany option").prop("selected", false);
+    if ($("#selectPrefCompany option:selected").length) {
+        alert("FAILED: did not unselect all #multiselect options");
+    }
+}
