@@ -92,14 +92,7 @@ function getCompanyListFromPage(){
      for(var i=3;i<=42;i++){
            companyListArray.push($(listOfCompanyAjax).find("tr:nth-of-type("+i+") td:nth-of-type(1) b").text());
      }
-
         window.localStorage.setItem("listOfCompanyStorage", JSON.stringify(companyListArray));
-
-
-        var retrieveListOfCompany = window.localStorage.getItem("listOfCompanyStorage");
-        var parsedListOfCompany = JSON.parse(retrieveListOfCompany);
-
-
 }
 function showListOfCompanyOnPage(){
     $companyList = $('#companyListSelect2');
@@ -131,17 +124,6 @@ function showListOfCompanyOnPage(){
         $('#companyListSelect2').selectmenu('refresh');
         $('#companyListSelect2').selectmenu('refresh', true);
 }
-
-function loadCompanyListWithoutInternet(){
-    showWig40OnHtml();
-    showListOfCompanyOnPage();
-}
-function loadCompanyList(){
-    getWig40InfoFromPage();
-    showWig40OnHtml();
-    getCompanyListFromPage();
-    showListOfCompanyOnPage();
-}
 function getDataForSelectedCompany(){
     var networkState = navigator.connection.type;
     if(networkState != Connection.NONE){
@@ -172,42 +154,52 @@ function getDataForSelectedCompany(){
                                        });
                       }
                       }).responseText;
-
-    }
-    else{
-
     }
 }
-//function getAllIndeces(){
-//    var allCompanyInfoStorage = new Array();
-//    for(var i=3;i<=42;i++){
-//        // new object every time, Calling push will not copy your object, because JavaScript Objects are passed by reference: you're pushing the same Object as every array entry.
-//        var company ={companyName: "", measureTime: "", curIndex: "", prevIndex: "", percentChange: "", pointChange: "", curAssets: ""};
-//            company.companyName=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(1) b").text()
-//            company.measureTime=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(2)").text()
-//            company.curIndex=     $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(3) b").text()
-//            company.prevIndex=    $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(4)").text()
-//            company.percentChange=$(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(5)").text()
-//            company.pointChange=  $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(6)").text()
-//            company.curAssets=    $(htmlOfPage).find("tr:nth-of-type("+i+") td:nth-of-type(7)").text()
-//            allCompanyInfoStorage.push(company);
-//    }
-//    window.localStorage.setItem("allCompanyInfoStorage", JSON.stringify(allCompanyInfoStorage));
-//}
+function loadCompanyListWithoutInternet(){
+    showWig40OnHtml();
+    showListOfCompanyOnPage();
+}
+function loadCompanyList(){
+    getWig40InfoFromPage();
+    showWig40OnHtml();
+    getCompanyListFromPage();
+    showListOfCompanyOnPage();
+    getDataForSelectedCompany();
+}
 function getSelectedCompanyInformation(){
     if( $("#companyListSelect2 option:selected").val()!=-1){
-        document.querySelector(".selectedCompanyIndexInfo2 a#currentIndexValue2").innerHTML =
-        $(htmlOfPage).find("tr:nth-of-type("+$("#companyListSelect2 option:selected").val()+") td:nth-of-type(3) b").text();
+    htmlOfPage =
+    $.ajax({
+                        async:false,
+                        type: "GET",
+                        url: url,
+                        dataType: "html",
+                        success: function (data) {
+                               document.querySelector(".selectedCompanyIndexInfo2 a#currentIndexValue2").innerHTML =
+                                       $(data).find("tr:nth-of-type("+$("#companyListSelect2 option:selected").val()+") td:nth-of-type(3) b").text();
+                      }
+                      }).responseText;
 
         srcOfSelectedCompany = $(htmlOfPage).find("tr:nth-of-type("+$("#companyListSelect2 option:selected").val()+") td:nth-of-type(1) a").attr('href');
-        $.ajax({
+    $.ajax({
                         async:false,
                         type: "GET",
                         url: srcOfSelectedCompany,
                         dataType: "html",
                         success: function (data) {
+                               document.querySelector(".selectedCompanyIndexInfo2 a#currentIndexValue2").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
+                               document.querySelector(".selectedCompanyIndexInfo2 a#percentChangeForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(4) td span').text();
+                               document.querySelector(".selectedCompanyIndexInfo2 a#pointChangeForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(5) td span').text();
+                               document.querySelector(".selectedCompanyIndexInfo2 a#prevClosureForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(6) td:nth-child(2)').text();
+                               document.querySelector(".selectedCompanyIndexInfo2 a#todayOpeninForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(7) td:nth-child(2)').text();
+                               document.querySelector(".selectedCompanyIndexInfo2 a#dailyMinForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(8) td:nth-child(2)').text();
+                               document.querySelector(".selectedCompanyIndexInfo2 a#dailyMaxForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(9) td:nth-child(2)').text();
+                               document.querySelector(".selectedCompanyIndexInfo2 a#curAssetsForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(10) td:nth-child(2)').text();
+
                                document.querySelector(".selectedCompanyIndexInfo2 img#wykresWybranejSpolki").src =
                                 $(data).find('#wykres_indeksu').attr('src');
+
                       }
                       }).responseText;
     }
