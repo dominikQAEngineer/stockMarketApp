@@ -214,6 +214,8 @@ function clearAllSelectedCompany(){
     if ($("#selectPrefCompany option:selected").length) {
         alert("FAILED: did not unselect all #multiselect options");
     }
+    $('#selectPrefCompany').selectmenu('refresh');
+    $('#selectPrefCompany').selectmenu('refresh', true);
 }
 
 function exitApp(){
