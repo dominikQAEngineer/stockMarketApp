@@ -44,7 +44,9 @@ function onDeviceReady() {
 	    var watchID = navigator.accelerometer.watchAcceleration(refreshMovement, onError, options);
     }
     else{
-    alert('There is no internet connection, after connect, click refresh button');
+        loadCompanyListWithoutInternet();
+        var watchID = navigator.accelerometer.watchAcceleration(refreshMovement, onError, options);
+        alert('Dane zostały załadowane bez połączenia internetowego, ze zmiennych lokalnych - mogą być nieaktualne');
     }
 }
 function getWig40InfoFromPage(){
