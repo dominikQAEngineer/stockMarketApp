@@ -33,7 +33,7 @@
     </div>
 
     <div data-role="page" id="mainPage3" class="ui-body-b" data-theme="b" data-prev="" data-next="#mainPage">
-        <div data-role="header" data-position="fixed">
+        <div data-role="header" class="ui-header-fixed">
             <a href="#myPanel" data-rel="main-menu-panel" class="ui-btn ui-btn-inline ui-corner-all ui-icon-bars ui-btn-icon-notext">Menu</a>
             <h2>Wybrane spółki</h2>
         </div>
@@ -55,7 +55,7 @@
                     <div id="basicInfoForSelected"></div>
             </div>
         </div>
-        <div data-role="footer" style="text-align:center;" data-position="fixed" class="ui-footer-fixed">
+        <div data-role="footer" style="text-align:center;" class="ui-footer-fixed">
             <label>Czas ostatniego odświeżenia:<a id="lastRefreshSelectedCompany"></a></label>
             <label> ● ○ ○ </label>
         </div>
@@ -63,7 +63,7 @@
     <!-- STRONA index wszystkich spolek -->
 
     <div data-role="page" id="mainPage" class="ui-body-b" data-theme="b" data-prev="#mainPage3" data-next="#mainPage2">
-        <div data-role="header" data-position="fixed">
+        <div data-role="header" class="ui-header-fixed">
             <a href="#myPanel" data-rel="main-menu-panel" class="ui-btn ui-btn-inline ui-corner-all ui-icon-bars ui-btn-icon-notext">Menu</a>
             <h2>mWIG40</h2>
         </div>
@@ -84,7 +84,7 @@
             </div>
 
         </div>
-        <div data-role="footer" style="text-align:center;" data-position="fixed" class="ui-footer-fixed">
+        <div data-role="footer" style="text-align:center;" class="ui-footer-fixed">
             <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageWig40"></a></label>
             <label>Czas ostatniego odświeżenia:<a id="lastRefreshTimeWig40"></a></label>
             <label> ○ ● ○ </label>
@@ -94,7 +94,7 @@
     <!--STRONA z info o wybranej spolce-->
 
     <div data-role="page" id="mainPage2" class="ui-body-b" data-theme="b" data-prev="#mainPage" data-next="">
-        <div data-role="header" data-position="fixed">
+        <div data-role="header" class="ui-header-fixed">
             <a href="#myPanel" data-rel="main-menu-panel" class="ui-btn ui-btn-inline ui-corner-all ui-icon-bars ui-btn-icon-notext">Menu</a>
             <h2>Dowolna spółka</h2>
         </div>
@@ -104,25 +104,28 @@
                         <label>Lista spółek:</label>
                         <select name="select-choice-a" id="companyListSelect2" data-native-menu="false" data-theme="b">
                                 <option value="-1">Wybierz spółkę</option>
-                            </select>
+                        </select>
                     </div>
                 <div class="selectedCompanyIndexInfo2">
-                    <a id="getSelectedCompanyIndex2" class="ui-btn ui-mini ui-btn-inline ui-corner-all ui-icon-arrow-d ui-btn-icon-left" style="float: right;" onclick="getSelectedCompanyInformation()">Pobierz dane</a>
-                    <label>Indeks wybranej spolki: <a id="currentIndexValue2"></a></label>
-                    <label>Zmiana [%]: <a id="percentChangeForCompany"></a> </label>
-                    <label>Zmiana [pkt]: <a id="pointChangeForCompany"></a></label>
-                    <label>Poprz. zamk.: <a id="prevClosureForCompany"></a></label>
-                    <label>Otwarcie: <a id="todayOpeninForCompany"></a></label>
-                    <label>Dzienne min: <a id="dailyMinForCompany"></a></label>
-                    <label>Dzienne max: <a id="dailyMaxForCompany"></a>  </label>
-                    <label>Obrót[PLN]: <a id="curAssetsForCompany"></a></label>
-                    <label>Wykres giełdowy wybranej spółki:</label>
-                    <img id="wykresWybranejSpolki" src="" alt="[tu pojawi sie wykres]" data-rel="external" style='height: 100%; width: 100%; max-width: 600px;object-fit: contain'
-                    />
+                    <div class="ui-grid-solo">
+                        <a id="getSelectedCompanyIndex2" class="ui-btn ui-mini ui-corner-all ui-icon-arrow-d ui-btn-icon-left" style="float: right;" onclick="getSelectedCompanyInformation()">Pobierz dane</a>
+                    </div>
+                    <div class="ui-grid-solo">
+                        <label>Indeks wybranej spolki: <a id="currentIndexValue2"></a></label>
+                        <label>Zmiana [%]: <a id="percentChangeForCompany"></a> </label>
+                        <label>Zmiana [pkt]: <a id="pointChangeForCompany"></a></label>
+                        <label>Poprz. zamk.: <a id="prevClosureForCompany"></a></label>
+                        <label>Otwarcie: <a id="todayOpeninForCompany"></a></label>
+                        <label>Dzienne min: <a id="dailyMinForCompany"></a></label>
+                        <label>Dzienne max: <a id="dailyMaxForCompany"></a>  </label>
+                        <label>Obrót[PLN]: <a id="curAssetsForCompany"></a></label>
+                        <label>Wykres giełdowy wybranej spółki:</label>
+                        <img id="wykresWybranejSpolki" src="" alt="[tu pojawi sie wykres]" data-rel="external" style='height: 100%; width: 100%; max-width: 600px;object-fit: contain'/>
+                    </div>
                 </div>
             </div>
         </div>
-        <div data-role="footer" style="text-align:center;" data-position="fixed" class="ui-footer-fixed">
+        <div data-role="footer" style="text-align:center;" class="ui-footer-fixed">
             <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageAllCompany"></a></label>
             <label>Czas ostatniego odświeżenia:<a id="lastRefreshAllCompany"></a></label>
             <label> ○ ○ ● </label>
