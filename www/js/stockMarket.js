@@ -84,6 +84,7 @@ function getWig40InfoFromPage(){
                 success: function (data) {
                         window.localStorage.setItem("wig40TimeLocal", $(data).find('.g_tab:nth-child(1) tr:nth-child(2) td b').text());
                         window.localStorage.setItem("wig40IndexLocal", $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text());
+                        window.localStorage.setItem("wig40ColourLocal", $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td:nth-child(2)').attr('class'));
                         window.localStorage.setItem("wig40percentChangeLocal", $(data).find('.g_tab:nth-child(1) tr:nth-child(4) td span').text());
                         window.localStorage.setItem("wig40pointChangeLocal", $(data).find('.g_tab:nth-child(1) tr:nth-child(5) td span').text());
                         window.localStorage.setItem("wig40prevClosureLocal", $(data).find('.g_tab:nth-child(1) tr:nth-child(6) td:nth-child(2)').text());
@@ -97,6 +98,10 @@ function getWig40InfoFromPage(){
 }
 function showWig40OnHtml(){
     document.querySelector("#lastTimeFromPageWig40").innerHTML =  window.localStorage.getItem("wig40TimeLocal");
+    if(window.localStorage.getItem("wig40ColourLocal")==='ta1 ziel')
+       document.querySelector(".stockInformation a#wig40StockIndex").style.color = "green";
+    else
+       document.querySelector(".stockInformation a#wig40StockIndex").style.color = "red";
     document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
     document.querySelector("#percentChangeWig40").innerHTML =  window.localStorage.getItem("wig40percentChangeLocal");
     document.querySelector("#pointChangeWig40").innerHTML =  window.localStorage.getItem("wig40pointChangeLocal");
@@ -194,17 +199,39 @@ function getDataForSelectedCompany(){
                                listOfCompanyAjax = $(data).find(".g_tab:nth-of-type(3)");
                                $('#selectPrefCompany :selected').each(function(){
                                            var p = document.createElement('p');
-                                           p.appendChild(document.createTextNode('Nazwa spółki: '+$(this).text()));
+                                           var aNazwa = document.createElement('a');
+                                           var aObecnaWartosc = document.createElement('a');
+                                           var aPoprzedniaWartosc = document.createElement('a');
+                                           var aZmianaProcentowa = document.createElement('a');
+                                           var aObrot = document.createElement('a');
+                                           var aCzas = document.createElement('a');
+                                           p.appendChild(document.createTextNode('Nazwa spółki: '));
+                                           aNazwa.appendChild(document.createTextNode($(this).text()));
+                                           p.appendChild(aNazwa);
                                            p.appendChild(document.createElement('br'));
-                                           p.appendChild(document.createTextNode('Obecna wartość: '+$(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(3) b").text()));
+                                           p.appendChild(document.createTextNode('Obecna wartość: '));
+                                           aObecnaWartosc.appendChild(document.createTextNode($(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(3) b").text()));
+                                           if($(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(3)").attr('class')==='ta1 ziel')
+                                              aObecnaWartosc.style.color = "green";
+                                           else
+                                              aObecnaWartosc.style.color = "red";
+                                           p.appendChild(aObecnaWartosc);
                                            p.appendChild(document.createElement('br'));
-                                           p.appendChild(document.createTextNode('Poprzednia wartość: '+$(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(4)").text()));
+                                           p.appendChild(document.createTextNode('Poprzednia wartość: '));
+                                           aPoprzedniaWartosc.appendChild(document.createTextNode($(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(4)").text()));
+                                           p.appendChild(aPoprzedniaWartosc);
                                            p.appendChild(document.createElement('br'));
-                                           p.appendChild(document.createTextNode('Zmiana procentowa: '+$(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(5)").text()));
+                                           p.appendChild(document.createTextNode('Zmiana procentowa: '));
+                                           aZmianaProcentowa.appendChild(document.createTextNode($(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(5)").text()));
+                                           p.appendChild(aZmianaProcentowa);
                                            p.appendChild(document.createElement('br'));
-                                           p.appendChild(document.createTextNode('Obrót [PLN]: '+$(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(7)").text()));
+                                           p.appendChild(document.createTextNode('Obrót [PLN]: '));
+                                           aObrot.appendChild(document.createTextNode($(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(7)").text()));
+                                           p.appendChild(aObrot);
                                            p.appendChild(document.createElement('br'));
-                                           p.appendChild(document.createTextNode('Czas: '+$(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(2)").text()));
+                                           p.appendChild(document.createTextNode('Czas: '));
+                                           aCzas.appendChild(document.createTextNode($(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(2)").text()));
+                                           p.appendChild(aCzas);
                                            p.appendChild(document.createElement('br'));
                                            insertDiv.appendChild(p);
                                        });
@@ -242,7 +269,12 @@ function getSelectedCompanyInformation(){
                         url: srcOfSelectedCompany,
                         dataType: "html",
                         success: function (data) {
-                        document.querySelector("#lastTimeFromPageAllCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(2) td b').text();
+                        if($(data).find('.fl .g_tab:nth-child(1) tr:nth-child(3) td:nth-child(2)').attr('class')==='ta1 ziel')
+                            document.querySelector(".selectedCompanyIndexInfo2 a#currentIndexValue2").style.color = "green";
+                        else
+                            document.querySelector(".selectedCompanyIndexInfo2 a#currentIndexValue2").style.color = "red";
+
+                               document.querySelector("#lastTimeFromPageAllCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(2) td b').text();
                                document.querySelector(".selectedCompanyIndexInfo2 a#currentIndexValue2").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
                                document.querySelector(".selectedCompanyIndexInfo2 a#percentChangeForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(4) td span').text();
                                document.querySelector(".selectedCompanyIndexInfo2 a#pointChangeForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(5) td span').text();
@@ -251,7 +283,6 @@ function getSelectedCompanyInformation(){
                                document.querySelector(".selectedCompanyIndexInfo2 a#dailyMinForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(8) td:nth-child(2)').text();
                                document.querySelector(".selectedCompanyIndexInfo2 a#dailyMaxForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(9) td:nth-child(2)').text();
                                document.querySelector(".selectedCompanyIndexInfo2 a#curAssetsForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(10) td:nth-child(2)').text();
-
                                document.querySelector(".selectedCompanyIndexInfo2 img#wykresWybranejSpolki").src =
                                 $(data).find('#wykres_indeksu').attr('src');
 
