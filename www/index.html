@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!--Content Security Policy can significantly reduce the risk and impact of cross-site scripting providing allowed paths-->
     <meta http-equiv="Content-Security-Policy" content="*">
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
     <script src="js/jquery-2.1.4.min.js"></script>
@@ -19,11 +20,11 @@
     <!-- STRONA z PERSONALIZACJA -->
     <div data-role="panel" id="myPanel" data-position-fixed="true">
         <h2>Menu</h2>
-        <a  class="ui-shadow ui-btn ui-btn-b ui-corner-all ui-icon-refresh ui-btn-icon-left">Odśwież</a>
+        <a  class="ui-shadow ui-btn ui-btn-b ui-corner-all ui-icon-refresh ui-btn-icon-left" onclick="refreshAll()">Odśwież</a>
         <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-b ui-corner-all ui-icon-info ui-btn-icon-left">O aplikacji</a>
-        <a class="ui-btn ui-btn-b  ui-corner-all ui-icon-delete ui-btn-icon-left" onclick=" exitApp()" >Zamknij</a>
+        <a class="ui-btn ui-btn-b  ui-corner-all ui-icon-delete ui-btn-icon-left" onclick="exitApp()" >Zamknij</a>
     </div>
-    <div data-role="popup" id="myPopup" data-rel="popup" data-position-to="window" data-overlay-theme="b">
+    <div data-role="popup" id="myPopup" data-rel="popup" data-position-to="window" data-overlay-theme="b" data-theme="b">
         <div data-role="header">
             <h1>Informacje</h1>
         </div>
@@ -38,31 +39,23 @@
         </div>
         <div data-role="main" class="ui-content">
             <div class="ui-grid-solo">
-                <label>Wybierz obserwowane spółki</label>
-                <div class="ui-field-contain" data-theme="b">
-                    <form>
-                        <select name="select-custom-19" id="selectPrefCompany" multiple="multiple" data-native-menu="false"
-                            data-theme="b"></select>
-                    </form>
+                <label for="selectPrefCompany">Wybierz obserwowane spółki:</label>
+                <select name="select-custom-19" id="selectPrefCompany" multiple="multiple" data-native-menu="false" data-theme="b"></select>
+            </div>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <a id="getDataForSelectedCompany" class="ui-btn ui-mini ui-btn-inline ui-corner-all ui-icon-arrow-d ui-btn-icon-left" onclick="getDataForSelectedCompany()">Pobierz dane</a>
                 </div>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">
-                        <input type="button" id="clearSelectedPreferences" value="Wyczyść wybrane spółki" class="ui-corner-all ui-icon-forbidden ui-btn-icon-left" onclick="clearAllSelectedCompany()" />
-                     </div>
-                     <div class="ui-block-b">
-                        <input type="button" id="saveSelectedPreferences" value="Zapisz wybrane spółki" class="ui-corner-all ui-icon-edit ui-btn-icon-left" onclick="saveSelectedCompanyList()"/>
-                    </div>
-                    <div class="ui-block-c">
-                        <input type="button" id="getDataForSelectedCompany" value="Pobierz dane dla wybranych spółek" class=" ui-corner-all ui-icon-arrow-d ui-btn-icon-left" onclick="getDataForSelectedCompany()"/>
-                    </div>
+                <div class="ui-block-b">
+                    <a id="saveSelectedPreferences" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-notext"  style="float: right;" onclick="saveSelectedCompanyList()"></a>
+                    <a id="clearSelectedPreferences" class="ui-btn ui-btn-inline ui-corner-all ui-icon-delete ui-btn-icon-notext " style="float: right;" onclick="clearAllSelectedCompany()"></a>
                 </div>
+            </div>
+            <div class="ui-grid-solo">
                     <div id="basicInfoForSelected"></div>
             </div>
         </div>
         <div data-role="footer" style="text-align:center;" data-position="fixed" class="ui-footer-fixed">
-            <a href="#mainPage2" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide" data-direction="reverse">Poprzednia strona</a>
-            <a href="#mainPage" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide">Następna strona</a>
-
             <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageSelectedCompany"></a></label>
             <label>Czas ostatniego odświeżenia:<a id="lastRefreshSelectedCompany"></a></label>
         </div>
@@ -72,7 +65,6 @@
     <div data-role="page" id="mainPage" class="ui-body-b" data-theme="b" data-prev="#mainPage3" data-next="#mainPage2">
         <div data-role="header" data-position="fixed">
             <a href="#myPanel" data-rel="main-menu-panel" class="ui-btn ui-btn-inline  ui-corner-all ui-icon-bars ui-btn-icon-left">Menu</a>
-
             <h1>Ogólne informacje mWIG40</h1>
         </div>
         <div data-role="main" class="ui-content" data-theme="b">
@@ -93,10 +85,6 @@
 
         </div>
         <div data-role="footer" style="text-align:center;" data-position="fixed" class="ui-footer-fixed">
-            <a href="#mainPage3" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide"
-                data-direction="reverse">Poprzednia strona</a>
-            <a href="#mainPage2" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide">Następna strona</a>
-
             <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageWig40"></a></label>
             <label>Czas ostatniego odświeżenia:<a id="lastRefreshTimeWig40"></a></label>
         </div>
@@ -112,15 +100,12 @@
         </div>
         <div data-role="main" class="ui-content">
             <div class="ui-grid-solo">
-
-                <form>
                     <div class="wig40CompanyList">
                         <label>Lista spółek:</label>
                         <select name="select-choice-a" id="companyListSelect2" data-native-menu="false" data-theme="b">
                                 <option value="-1">Wybierz spółkę</option>
                             </select>
                     </div>
-                </form>
                 <div class="selectedCompanyIndexInfo2">
                     <input type="button" id="getSelectedCompanyIndex2" value="Pobierz informacje o wybranej spółce" onclick="getSelectedCompanyInformation()"
                     />
@@ -139,10 +124,6 @@
             </div>
         </div>
         <div data-role="footer" style="text-align:center;" data-position="fixed" class="ui-footer-fixed">
-            <a href="#mainPage" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-l ui-btn-icon-left ui-corner-all" data-transition="slide"
-                data-direction="reverse">Poprzednia strona</a>
-            <a href="#mainPage3" data-role="button" class="ui-shadow ui-btn ui-icon-arrow-r ui-btn-icon-right ui-corner-all" data-transition="slide">Następna strona</a>
-
             <label>Czas ostatniego pobrania danych:<a id="lastTimeFromPageAllCompany"></a></label>
             <label>Czas ostatniego odświeżenia:<a id="lastRefreshAllCompany"></a></label>
         </div>

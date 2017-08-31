@@ -17,6 +17,17 @@ function refreshMovement(acceleration) {
     alert('Odświeżono dane bez dostępu do internetu, dane są załadowane ze zmiennych lokalnych');
     }
 }
+function refreshAll(){
+    var networkState = navigator.connection.type;
+    if(networkState != Connection.NONE){
+        loadCompanyList();
+        alert('Odświeżono dane z dostępem do internetu, wszystko aktualne');
+    }
+    else{
+        loadCompanyListWithoutInternet();
+        alert('Odświeżono dane bez dostępu do internetu, dane są załadowane ze zmiennych lokalnych');
+    }
+}
 function onError() {
     alert('There is some kind of problem with accelerator!');
 }
@@ -44,8 +55,8 @@ function saveSelectedCompanyList(){
         else
             prefCompanySelected.push('false');
     }
-    console.log(prefCompanySelected);
     window.localStorage.setItem("prefCompanySelected", JSON.stringify(prefCompanySelected));
+    alert('Zapisano wybrane spółki');
 }
 function getWig40InfoFromPage(){
     $.ajax({
@@ -126,7 +137,7 @@ function showListOfCompanyOnPage(){
 }
 function getDataForSelectedCompany(){
     var networkState = navigator.connection.type;
-    if(networkState != Connection.NONE){
+    if(networkState != Connection.NONE &&  $('#selectPrefCompany :selected').length){
     var insertDiv = document.getElementById('basicInfoForSelected');
     while (insertDiv.firstChild) {
         insertDiv.removeChild(insertDiv.firstChild);
@@ -155,6 +166,9 @@ function getDataForSelectedCompany(){
                       }
                       }).responseText;
     }
+    else{
+    alert('Dane nie zostały pobrane ze względu na brak połączenia internetowego bądź brak wybranych spółek');
+    }
 }
 function loadCompanyListWithoutInternet(){
     showWig40OnHtml();
@@ -168,7 +182,8 @@ function loadCompanyList(){
     getDataForSelectedCompany();
 }
 function getSelectedCompanyInformation(){
-    if( $("#companyListSelect2 option:selected").val()!=-1){
+    var networkState = navigator.connection.type;
+    if( $("#companyListSelect2 option:selected").val()!=-1 && networkState != Connection.NONE){
     htmlOfPage =
     $.ajax({
                         async:false,
@@ -203,6 +218,12 @@ function getSelectedCompanyInformation(){
                       }
                       }).responseText;
     }
+    else if(networkState === Connection.NONE){
+    alert('Aby pobrać dane dla wybranej spółki musisz być połączony z internetem');
+    }
+    else if($("#companyListSelect2 option:selected").val()!=-1){
+    alert('Wybierz spółkę, dla której mają być pobrane dane');
+    }
 }
 
 function clearAllSelectedCompany(){
@@ -212,6 +233,7 @@ function clearAllSelectedCompany(){
     }
     $('#selectPrefCompany').selectmenu('refresh');
     $('#selectPrefCompany').selectmenu('refresh', true);
+    alert('Wyczyszczono preferowane spółki');
 }
 
 function exitApp(){
