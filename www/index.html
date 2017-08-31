@@ -44,7 +44,7 @@
             </div>
             <div class="ui-grid-a">
                 <div class="ui-block-a">
-                    <a id="getDataForSelectedCompany" class="ui-btn ui-mini ui-btn-inline ui-corner-all ui-icon-arrow-d ui-btn-icon-left" onclick="getDataForSelectedCompany()">Pobierz dane</a>
+                    <a id="getDataForSelectedCompany" class="ui-btn ui-mini ui-btn-inline ui-corner-all ui-icon-arrow-d ui-btn-icon-left" onclick="getDataForSelectedCompanyButton()">Pobierz dane</a>
                 </div>
                 <div class="ui-block-b">
                     <a id="saveSelectedPreferences" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-notext"  style="float: right;" onclick="saveSelectedCompanyList()"></a>
@@ -107,8 +107,7 @@
                             </select>
                     </div>
                 <div class="selectedCompanyIndexInfo2">
-                    <input type="button" id="getSelectedCompanyIndex2" value="Pobierz informacje o wybranej spółce" onclick="getSelectedCompanyInformation()"
-                    />
+                    <a id="getSelectedCompanyIndex2" class="ui-btn ui-mini ui-btn-inline ui-corner-all ui-icon-arrow-d ui-btn-icon-left" style="float: right;" onclick="getSelectedCompanyInformation()">Pobierz dane</a>
                     <label>Indeks wybranej spolki: <a id="currentIndexValue2"></a></label>
                     <label>Zmiana [%]: <a id="percentChangeForCompany"></a> </label>
                     <label>Zmiana [pkt]: <a id="pointChangeForCompany"></a></label>

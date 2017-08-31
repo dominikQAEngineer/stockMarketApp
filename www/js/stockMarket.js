@@ -1,5 +1,5 @@
 var options = { frequency: 300 };  // Update every 0.3 seconds
-var htmlOfPage = "";
+var networkState = null;
 var companyListArray = new Array();
 var $companyList = {};
 var multiSelectOptionString = '';
@@ -7,24 +7,23 @@ var url = "http://mybank.pl/gielda/indeks-mwig40.html";
 //Function responsible for refresh current stock index after movement of device (not working on browser
 function refreshMovement(acceleration) {
     var deviceManufacturer  = device.manufacturer;
-    var networkState = navigator.connection.type;
+    networkState = navigator.connection.type;
     if(acceleration.z<0 && deviceManufacturer!="unknown" && networkState != Connection.NONE){
-    loadCompanyList();
-    alert('Odświeżono dane z dostępem do internetu, wszystko aktualne');
+        loadCompanyListOnStartAndRefresh();
+        alert('Odświeżono dane z dostępem do internetu, wszystko aktualne');
     }
     else if(acceleration.z<0 && deviceManufacturer!="unknown" && networkState === Connection.NONE){
-    loadCompanyListWithoutInternet();
-    alert('Odświeżono dane bez dostępu do internetu, dane są załadowane ze zmiennych lokalnych');
+        loadCompanyListOnStartAndRefresh();
+        alert('Odświeżono dane bez dostępu do internetu, dane są załadowane ze zmiennych lokalnych');
     }
 }
 function refreshAll(){
-    var networkState = navigator.connection.type;
+    networkState = navigator.connection.type;
+    loadCompanyListOnStartAndRefresh();
     if(networkState != Connection.NONE){
-        loadCompanyList();
         alert('Odświeżono dane z dostępem do internetu, wszystko aktualne');
     }
     else{
-        loadCompanyListWithoutInternet();
         alert('Odświeżono dane bez dostępu do internetu, dane są załadowane ze zmiennych lokalnych');
     }
 }
@@ -35,16 +34,11 @@ function start(){
     document.addEventListener("deviceready",onDeviceReady, false);
 }
 function onDeviceReady() {
-    var networkState = navigator.connection.type;
-    if(networkState != Connection.NONE){
-        loadCompanyList();
-	    var watchID = navigator.accelerometer.watchAcceleration(refreshMovement, onError, options);
-    }
-    else{
-        loadCompanyListWithoutInternet();
-        var watchID = navigator.accelerometer.watchAcceleration(refreshMovement, onError, options);
+    networkState = navigator.connection.type;
+    var watchID = navigator.accelerometer.watchAcceleration(refreshMovement, onError, options);
+    loadCompanyListOnStartAndRefresh();
+    if(networkState === Connection.NONE)
         alert('Dane zostały załadowane bez połączenia internetowego, ze zmiennych lokalnych - mogą być nieaktualne');
-    }
 }
 function saveSelectedCompanyList(){
     var prefCompanyList = document.getElementById("selectPrefCompany");
@@ -135,13 +129,25 @@ function showListOfCompanyOnPage(){
         $('#companyListSelect2').selectmenu('refresh');
         $('#companyListSelect2').selectmenu('refresh', true);
 }
-function getDataForSelectedCompany(){
-    var networkState = navigator.connection.type;
-    if(networkState != Connection.NONE &&  $('#selectPrefCompany :selected').length){
-    var insertDiv = document.getElementById('basicInfoForSelected');
-    while (insertDiv.firstChild) {
-        insertDiv.removeChild(insertDiv.firstChild);
+function loadCompanyListOnStartAndRefresh(){
+    networkState = navigator.connection.type;
+    if(networkState != Connection.NONE){
+        getWig40InfoFromPage();
+        showWig40OnHtml();
+        getCompanyListFromPage();
+        showListOfCompanyOnPage();
+        getDataForSelectedCompany();
     }
+    else{
+        showWig40OnHtml();
+        showListOfCompanyOnPage();
+    }
+}
+function getDataForSelectedCompany(){
+        var insertDiv = document.getElementById('basicInfoForSelected');
+        while (insertDiv.firstChild) {
+            insertDiv.removeChild(insertDiv.firstChild);
+        }
     $.ajax({
                         async:false,
                         type: "GET",
@@ -165,26 +171,24 @@ function getDataForSelectedCompany(){
                                        });
                       }
                       }).responseText;
+}
+function getDataForSelectedCompanyButton(){
+networkState = navigator.connection.type;
+    if($('#selectPrefCompany :selected').length && networkState != Connection.NONE){
+        getDataForSelectedCompany();
+    }
+    else if($('#selectPrefCompany :selected').length && networkState === Connection.NONE){
+        alert('Brak połączenia internetowego, dane nie mogą zostać pobrane.');
     }
     else{
-    alert('Dane nie zostały pobrane ze względu na brak połączenia internetowego bądź brak wybranych spółek');
+        alert('Wybierz firmy, dla których chcesz pobrać dane');
     }
-}
-function loadCompanyListWithoutInternet(){
-    showWig40OnHtml();
-    showListOfCompanyOnPage();
-}
-function loadCompanyList(){
-    getWig40InfoFromPage();
-    showWig40OnHtml();
-    getCompanyListFromPage();
-    showListOfCompanyOnPage();
-    getDataForSelectedCompany();
+
 }
 function getSelectedCompanyInformation(){
-    var networkState = navigator.connection.type;
+    networkState = navigator.connection.type;
     if( $("#companyListSelect2 option:selected").val()!=-1 && networkState != Connection.NONE){
-    htmlOfPage =
+    var htmlOfPage =
     $.ajax({
                         async:false,
                         type: "GET",
@@ -219,10 +223,10 @@ function getSelectedCompanyInformation(){
                       }).responseText;
     }
     else if(networkState === Connection.NONE){
-    alert('Aby pobrać dane dla wybranej spółki musisz być połączony z internetem');
+        alert('Aby pobrać dane dla wybranej spółki musisz być połączony z internetem');
     }
-    else if($("#companyListSelect2 option:selected").val()!=-1){
-    alert('Wybierz spółkę, dla której mają być pobrane dane');
+    else if($("#companyListSelect2 option:selected").val()=-1){
+        alert('Wybierz spółkę, dla której mają być pobrane dane');
     }
 }
 
