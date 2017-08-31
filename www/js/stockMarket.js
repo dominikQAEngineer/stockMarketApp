@@ -82,6 +82,7 @@ function getWig40InfoFromPage(){
                 url: url,
                 dataType: "html",
                 success: function (data) {
+                        window.localStorage.setItem("wig40TimeLocal", $(data).find('.g_tab:nth-child(1) tr:nth-child(2) td b').text());
                         window.localStorage.setItem("wig40IndexLocal", $(data).find('.g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text());
                         window.localStorage.setItem("wig40percentChangeLocal", $(data).find('.g_tab:nth-child(1) tr:nth-child(4) td span').text());
                         window.localStorage.setItem("wig40pointChangeLocal", $(data).find('.g_tab:nth-child(1) tr:nth-child(5) td span').text());
@@ -95,6 +96,7 @@ function getWig40InfoFromPage(){
               }).responseText;
 }
 function showWig40OnHtml(){
+    document.querySelector("#lastTimeFromPageWig40").innerHTML =  window.localStorage.getItem("wig40TimeLocal");
     document.querySelector(".stockInformation a#wig40StockIndex").innerHTML =  window.localStorage.getItem("wig40IndexLocal");
     document.querySelector("#percentChangeWig40").innerHTML =  window.localStorage.getItem("wig40percentChangeLocal");
     document.querySelector("#pointChangeWig40").innerHTML =  window.localStorage.getItem("wig40pointChangeLocal");
@@ -202,6 +204,8 @@ function getDataForSelectedCompany(){
                                            p.appendChild(document.createElement('br'));
                                            p.appendChild(document.createTextNode('Obrót [PLN]: '+$(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(7)").text()));
                                            p.appendChild(document.createElement('br'));
+                                           p.appendChild(document.createTextNode('Czas: '+$(data).find(".g_tab:nth-of-type(3) tr:nth-of-type("+$(this).val()+") td:nth-of-type(2)").text()));
+                                           p.appendChild(document.createElement('br'));
                                            insertDiv.appendChild(p);
                                        });
                       }
@@ -238,6 +242,7 @@ function getSelectedCompanyInformation(){
                         url: srcOfSelectedCompany,
                         dataType: "html",
                         success: function (data) {
+                        document.querySelector("#lastTimeFromPageAllCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(2) td b').text();
                                document.querySelector(".selectedCompanyIndexInfo2 a#currentIndexValue2").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(3) td b:nth-child(1)').text();
                                document.querySelector(".selectedCompanyIndexInfo2 a#percentChangeForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(4) td span').text();
                                document.querySelector(".selectedCompanyIndexInfo2 a#pointChangeForCompany").innerHTML = $(data).find('.fl .g_tab:nth-child(1) tr:nth-child(5) td span').text();
