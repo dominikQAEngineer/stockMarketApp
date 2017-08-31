@@ -188,19 +188,15 @@ networkState = navigator.connection.type;
 function getSelectedCompanyInformation(){
     networkState = navigator.connection.type;
     if( $("#companyListSelect2 option:selected").val()!=-1 && networkState != Connection.NONE){
-    var htmlOfPage =
     $.ajax({
                         async:false,
                         type: "GET",
                         url: url,
                         dataType: "html",
                         success: function (data) {
-                               document.querySelector(".selectedCompanyIndexInfo2 a#currentIndexValue2").innerHTML =
-                                       $(data).find("tr:nth-of-type("+$("#companyListSelect2 option:selected").val()+") td:nth-of-type(3) b").text();
+                          srcOfSelectedCompany = $(data).find(".g_tab tr:nth-of-type("+$("#companyListSelect2 option:selected").val()+") td:nth-of-type(1) a").attr('href');
                       }
                       }).responseText;
-
-        srcOfSelectedCompany = $(htmlOfPage).find("tr:nth-of-type("+$("#companyListSelect2 option:selected").val()+") td:nth-of-type(1) a").attr('href');
     $.ajax({
                         async:false,
                         type: "GET",
