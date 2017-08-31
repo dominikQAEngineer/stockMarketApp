@@ -8,9 +8,10 @@ Aplikacja służąca do podglądu aktualnych notowań giełdowych mWIG40:
 -udostępnianie wykresów giełdowych dla wybranej spółki (Pobrane z serwisu internetowego) 
 -Wyszukiwanie notowań konkretnej spółki
 
+Downloads:
+https://build.phonegap.com/apps/2763359/share
+
 ### PhoneGap CLI
 
     $ phonegap create my-app --template blank
-Downloads:
-https://build.phonegap.com/apps/2763359/share
 
