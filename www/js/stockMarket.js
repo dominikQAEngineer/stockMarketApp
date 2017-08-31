@@ -9,23 +9,44 @@ function refreshMovement(acceleration) {
     var deviceManufacturer  = device.manufacturer;
     networkState = navigator.connection.type;
     if(acceleration.z<0 && deviceManufacturer!="unknown" && networkState != Connection.NONE){
-        loadCompanyListOnStartAndRefresh();
+        refreshAllData();
+        setRefreshTime();
         alert('Odświeżono dane z dostępem do internetu, wszystko aktualne');
     }
     else if(acceleration.z<0 && deviceManufacturer!="unknown" && networkState === Connection.NONE){
-        loadCompanyListOnStartAndRefresh();
+        refreshAllData();
+        setRefreshTime();
         alert('Odświeżono dane bez dostępu do internetu, dane są załadowane ze zmiennych lokalnych');
     }
 }
+function setRefreshTime() {
+    var currentdate = new Date();
+    var curHours = currentdate.getHours();
+    var curMinutes = currentdate.getMinutes();
+    var curSeconds = currentdate.getSeconds();
+    if(curHours<10)
+    curHours="0"+curHours;
+    if(curMinutes<10)
+    curMinutes="0"+curMinutes;
+    if(curSeconds<10)
+    curSeconds="0"+curSeconds;
+
+    lastRefreshTime = curHours + ":" + curMinutes + ":" + curSeconds;
+        document.querySelector("#lastRefreshSelectedCompany").innerHTML = lastRefreshTime;
+        document.querySelector("#lastRefreshTimeWig40").innerHTML = lastRefreshTime;
+        document.querySelector("#lastRefreshAllCompany").innerHTML = lastRefreshTime;
+}
 function refreshAll(){
     networkState = navigator.connection.type;
-    loadCompanyListOnStartAndRefresh();
+    refreshAllData();
+    setRefreshTime();
     if(networkState != Connection.NONE){
         alert('Odświeżono dane z dostępem do internetu, wszystko aktualne');
     }
     else{
         alert('Odświeżono dane bez dostępu do internetu, dane są załadowane ze zmiennych lokalnych');
     }
+
 }
 function onError() {
     alert('There is some kind of problem with accelerator!');
@@ -36,9 +57,11 @@ function start(){
 function onDeviceReady() {
     networkState = navigator.connection.type;
     var watchID = navigator.accelerometer.watchAcceleration(refreshMovement, onError, options);
-    loadCompanyListOnStartAndRefresh();
+    loadCompanyListOnStart();
     if(networkState === Connection.NONE)
         alert('Dane zostały załadowane bez połączenia internetowego, ze zmiennych lokalnych - mogą być nieaktualne');
+
+    setRefreshTime();
 }
 function saveSelectedCompanyList(){
     var prefCompanyList = document.getElementById("selectPrefCompany");
@@ -129,7 +152,7 @@ function showListOfCompanyOnPage(){
         $('#companyListSelect2').selectmenu('refresh');
         $('#companyListSelect2').selectmenu('refresh', true);
 }
-function loadCompanyListOnStartAndRefresh(){
+function loadCompanyListOnStart(){
     networkState = navigator.connection.type;
     if(networkState != Connection.NONE){
         getWig40InfoFromPage();
@@ -141,6 +164,18 @@ function loadCompanyListOnStartAndRefresh(){
     else{
         showWig40OnHtml();
         showListOfCompanyOnPage();
+    }
+}
+function refreshAllData(){
+    networkState = navigator.connection.type;
+    if(networkState != Connection.NONE){
+        getWig40InfoFromPage();
+        showWig40OnHtml();
+        getDataForSelectedCompany();
+        getSelectedCompanyInformation();
+    }
+    else{
+        showWig40OnHtml();
     }
 }
 function getDataForSelectedCompany(){
@@ -221,7 +256,7 @@ function getSelectedCompanyInformation(){
     else if(networkState === Connection.NONE){
         alert('Aby pobrać dane dla wybranej spółki musisz być połączony z internetem');
     }
-    else if($("#companyListSelect2 option:selected").val()=-1){
+    else if($("#companyListSelect2 option:selected").val()===-1){
         alert('Wybierz spółkę, dla której mają być pobrane dane');
     }
 }
